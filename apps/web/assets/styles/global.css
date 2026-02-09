@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+* {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --primary-bg-color: #EEF0EB;
+    --secondary-bg-color: #C3D9A5;
+    --primary-text-color: #4C4C4C;
+    --secondary-text-color: #EEF0EB;
+    --primary-highlight-color: #FF4B4B;
+
+    --error-color: #DA0101;
+    --succes-color: #007A52;
+
+    --border-radius-sm: 16px;
+    --border-radius-md: 10000px;
+
+    --primary-font: "Kantumruy Pro", sans-serif;
+
+    --font-weight-r: 300;
+    --font-weight-m: 500;
+    --font-weigt-b: 700;
+
+    /* Spacing */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 2rem;
+}
+
+body {
+    font-family: var(--primary-font);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: var(--font-weight-m);
+}
+
+h1 {
+    font-size: clamp(2.5rem, 1.954rem + 2.2989vw, 3.75rem);
+}
+
+h2 {
+    font-size: clamp(2.1875rem, 1.8326rem + 1.4943vw, 3rem);
+}
+
+h3 {
+    font-size: clamp(1.875rem, 1.602rem + 1.1494vw, 2.5rem);
+}
+
+h4 {
+    font-size: clamp(1.6875rem, 1.551rem + 0.5747vw, 2rem);
+}
+
+h5 {
+    font-size: clamp(1.25rem, 1.1408rem + 0.4598vw, 1.5rem);
+}
+
+h6 {
+    font-size: clamp(1.125rem, 1.0704rem + 0.2299vw, 1.25rem);
+}
+
+/* Focus state */
+*:focus-visible {
+    outline: 3px dashed var(--primary-highlight-color);
+    outline-offset: 4px;
+}
+
+/* Darkmode */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary-bg-color: #4C4C4C;
+        --secondary-bg-color: #6E7467;
+        --primary-text-color: #FFFFFF;
+    }
+  }
