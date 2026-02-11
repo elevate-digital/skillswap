@@ -3,8 +3,6 @@
 * {
     box-sizing: border-box;
     scroll-behavior: smooth;
-    padding: 0;
-    margin: 0;
 }
 
 :root {
@@ -17,14 +15,15 @@
     --error-color: #DA0101;
     --succes-color: #007A52;
 
-    --border-radius-sm: 16px;
-    --border-radius-md: 10000px;
+    --border-radius-sm: 8px;
+    --border-radius-md: 16px;
+    --border-radius-lg: 10000px;
 
     --primary-font: "Kantumruy Pro", sans-serif;
 
     --font-weight-r: 300;
     --font-weight-m: 500;
-    --font-weigt-b: 700;
+    --font-weight-b: 700;
 
     /* Spacing */
     --space-xs: 0.25rem;
@@ -35,10 +34,18 @@
 
 body {
     font-family: var(--primary-font);
+    background-color: var(--primary-bg-color);
+    height: 200vh;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3 {
     font-weight: var(--font-weight-m);
+    color: var(--primary-text-color);
+}
+
+h4, h5, h6 {
+    font-weight: var(--font-weight-s);
+    color: var(--primary-text-color);
 }
 
 h1 {
@@ -77,5 +84,7 @@ h6 {
         --primary-bg-color: #4C4C4C;
         --secondary-bg-color: #6E7467;
         --primary-text-color: #FFFFFF;
+        --secondary-text-color: #FFFFFF;
+        --primary-highlight-color: #dc3232;
     }
   }

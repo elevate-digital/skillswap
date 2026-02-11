@@ -1,6 +1,9 @@
 {
   "extends": "@repo/typescript-config/nextjs.json",
   "compilerOptions": {
+    "paths": {
+      "@/*": ["./*"],
+    },
     "plugins": [
       {
         "name": "next"
@@ -13,7 +16,7 @@
     "next-env.d.ts",
     "next.config.js",
     ".next/types/**/*.ts"
-  ],
+, "app/layout.tsx", "app/page.tsx", "lib/components/atoms/Button.tsx", "lib/assets/IconPlus.tsx"  ],
   "exclude": [
     "node_modules"
   ]
