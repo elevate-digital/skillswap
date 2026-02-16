@@ -8,9 +8,13 @@
 :root {
     --primary-bg-color: #EEF0EB;
     --secondary-bg-color: #C3D9A5;
+    --third-bg-color: #fff;
     --primary-text-color: #4C4C4C;
     --secondary-text-color: #EEF0EB;
+    --third-text-color: #6B7280;
     --primary-highlight-color: #FF4B4B;
+    --secondary-highlight-color: #F3F7ED;
+    --third-highlight-color: #E9EFFD;
 
     --error-color: #DA0101;
     --succes-color: #007A52;
@@ -70,6 +74,12 @@ h5 {
 
 h6 {
     font-size: clamp(1.125rem, 1.0704rem + 0.2299vw, 1.25rem);
+}
+
+p {
+    font-size: 16px;
+    color: var(--third-text-color);
+    font-weight: var(--font-weight-r);
 }
 
 /* Focus state */
