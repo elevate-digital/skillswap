@@ -1,10 +1,23 @@
 "use client";
 
+import { useCallback } from "react";
 import { Button } from "@/lib/components";
 import { LogoFull } from "@/lib/assets/LogoFull";
 import { PlusCircleIcon } from "@phosphor-icons/react";
 
 export function Header() {
+
+    // Functie wordt maar één keer aangemaakt en blijft hetzelfde
+    const scrollToSection = useCallback((id: string) => {
+        const element = document.getElementById(id);
+
+        // Check of het element bestaat
+        if (element) {
+            element.scrollIntoView({ behavior: "smooth" }); 
+            element.focus();
+        }
+    }, []);
+
     return (
         <header className="flex justify-between items-center m-auto sticky top-0 bg-[var(--primary-bg-color)] py-[.5em] md:py-[1em] max-w-[1600px]">
           <LogoFull />
