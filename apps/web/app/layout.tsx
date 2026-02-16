@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import "./global.css";
 import React from "react";
-import { Button } from "../lib/components";
-import { LogoFull } from "@/lib/assets/LogoFull";
+import { Header } from "@/lib/components";
 
 export const metadata: Metadata = {
   title: "Skill Swap",
@@ -25,18 +24,11 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="px-[5%] max-w-[1600px] m-auto">
+      <body className="px-[5%] max-w-[1400px] m-auto">
 
         <a className="absolute top-[-300px] focus:top-0 ease-in-out duration-200 left-1/2 transform -translate-x-1/2 z-1000 bg-[var(--secondary-bg-color)] text-[var(--primary-text-color)] hover:bg-[var(--primary-text-color)] hover:text-[var(--secondary-text-color)] py-[7px] px-[10px] rounded-b-lg" href="#inhoud">Ga naar inhoud</a>
 
-        <header className="flex justify-between items-center m-auto sticky top-0 bg-[var(--primary-bg-color)] py-3 max-w-[1600px]">
-          <LogoFull />
-
-          <div className="flex gap-2 w-[100%] justify-end">
-            <Button variant="primary" icon="plus">Skill aanbieden</Button>
-            <Button variant="secondary" icon="plus">Hulp vragen</Button>
-          </div>
-        </header>
+        <Header />
         {children}
       </body>
     </html>
