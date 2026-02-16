@@ -6,13 +6,13 @@ import { PlusCircleIcon } from "@phosphor-icons/react";
 
 export function Header() {
     return (
-        <header className="flex justify-between items-center m-auto sticky top-0 bg-[var(--primary-bg-color)] py-3 max-w-[1600px]">
+        <header className="flex justify-between items-center m-auto sticky top-0 bg-[var(--primary-bg-color)] py-[.5em] md:py-[1em] max-w-[1600px]">
           <LogoFull />
 
-          <div className="flex gap-2 w-[100%] justify-end">
+          <nav className="flex gap-2 w-[100%] justify-end">
             <Button variant="primary" icon={PlusCircleIcon}>Skill aanbieden</Button>
             <Button variant="secondary" icon={PlusCircleIcon}>Hulp vragen</Button>
-          </div>
+          </nav>
         </header>
     )
 }

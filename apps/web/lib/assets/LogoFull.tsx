@@ -1,4 +1,4 @@
-export const LogoFull = () => { 
+export function LogoFull() { 
     return (
         <a href="/" className="w-[12%] md:w-[20%]">
             <svg height={50} fill="none" xmlns="http://www.w3.org/2000/svg">
