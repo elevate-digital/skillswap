@@ -10,7 +10,7 @@ export function PopupHeader({ title, description, icon }: PopupHeaderProps) {
   return (
     <div className="flex flex-col gap-1">
       <h2 className="flex gap-2 items-center !text-[24px]">{icon}{title}</h2>
-      <p>{description}</p>
+      <p className="!text-[#4C4C4C]">{description}</p>
     </div>
   );
 }

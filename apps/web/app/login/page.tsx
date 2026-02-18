@@ -7,7 +7,7 @@ import { PopupOverlay } from "@/lib/components";
 export default function Home() {
   return ( 
     <main>
-        <FocusLock>
+        <FocusLock autoFocus={false}>
           <PopupOverlay>
                   <PopupLogin title="Welkom bij SkillSwap" description="Log in of maak een account aan om skills te delen en hulp te vragen."/>
           </PopupOverlay>
