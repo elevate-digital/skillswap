@@ -1,5 +1,6 @@
 // Atoms
 export { Button } from "./atoms/Button";
+export { AddButton } from "./atoms/AddButton";
 export { Tag } from "./atoms/Tag";
 export { IconBg } from "./atoms/IconBg";
 export { Icon } from "./atoms/Icon";

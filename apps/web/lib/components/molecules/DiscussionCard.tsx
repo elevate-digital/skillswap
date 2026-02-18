@@ -3,6 +3,7 @@
 import React from 'react';
 import { ClockIcon, ChatCircleIcon, CalendarIcon } from "@phosphor-icons/react";
 import { Tag } from "@/lib/components";
+import { ProfilePicture } from "@/lib/components";
 import { IconBg } from "@/lib/components";
 
 export function DiscussionCard() {
@@ -19,7 +20,7 @@ export function DiscussionCard() {
 
         <section className="flex items-center justify-between w-[100%] mt-2">
             <div className="flex items-center gap-3">
-                <p className="w-[45px] h-[45px] rounded-full bg-[var(--primary-highlight-color)] flex items-center justify-center !text-[var(--secondary-text-color)] !font-[var(--font-weight-m)]">EV</p>
+                <ProfilePicture name="EV"/>
                 <div className="flex flex-col">
                     <span className="text-[16px] font-medium text-[var(--primary-text-color)]">Emma Visser</span>
                     <span className="flex flex-row items-center gap-1 text-[14px] text-[var(--primary-text-color)]"><CalendarIcon /> 2 feb 2026</span>

@@ -29,8 +29,10 @@ export function Header() {
               <ProfilePicture name="EV" />
             </button>
 
-            <Button variant="primary" icon={PlusCircleIcon}>Skill aanbieden</Button>
-            <Button variant="secondary" icon={PlusCircleIcon}>Hulp vragen</Button>
+            <div className='hidden md:flex gap-2'>
+              <Button variant="primary" icon={PlusCircleIcon}>Skill aanbieden</Button>
+              <Button variant="secondary" icon={PlusCircleIcon}>Hulp vragen</Button>
+            </div>
           </nav>
         </header>
     )

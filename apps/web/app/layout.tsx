@@ -3,6 +3,7 @@ import "./global.css";
 import React from "react";
 import { Header } from "@/lib/components";
 import { Container } from "@/lib/components";
+import { AddButton } from "@/lib/components";
 
 export const metadata: Metadata = {
   title: "Skill Swap",
@@ -28,6 +29,8 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
         <Container>
           <Header />
           {children}
+
+          <AddButton />
         </Container>
       </body>
     </html>

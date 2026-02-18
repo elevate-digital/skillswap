@@ -17,8 +17,8 @@ const variantStyles = {
 export function Button({ children, variant = "secondary", icon: Icon, }: ButtonProps) {
 
   return (
-    <button className={`flex items-center justify-center gap-3 rounded-[var(--border-radius-sm)] cursor-pointer transition-colors ${variantStyles[variant]} ${!children && Icon ? "p-[12px] sm:p-[12px]" : "py-[7px] px-[10px] sm:py-[12px] sm:px-[32px]"}`}>
-      {Icon && (<Icon className={!children ? "block text-[22px] md:text-[20px]" : "hidden sm:block text-[24px] md:text-[22px]"} />)}
+    <button className={`flex items-center justify-center gap-3 rounded-[var(--border-radius-sm)] cursor-pointer transition-colors ${variantStyles[variant]} ${!children && Icon ? "p-[12px] lg:p-[12px]" : "py-[7px] px-[10px] lg:py-[12px] lg:px-[32px]"}`}>
+      {Icon && (<Icon className={!children ? "block text-[22px] md:text-[20px]" : "hidden lg:block text-[24px] lg:text-[22px]"} />)}
       {children}
     </button>
   );
