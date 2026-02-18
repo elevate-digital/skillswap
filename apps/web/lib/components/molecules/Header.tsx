@@ -1,7 +1,8 @@
-"use client";
+'use client'
 
 import { useCallback } from "react";
 import { Button } from "@/lib/components";
+import { ProfilePicture } from "@/lib/components";
 import { LogoFull } from "@/lib/assets/LogoFull";
 import { PlusCircleIcon } from "@phosphor-icons/react";
 
@@ -19,10 +20,14 @@ export function Header() {
     }, []);
 
     return (
-        <header className="flex justify-between items-center m-auto sticky top-0 bg-[var(--primary-bg-color)] py-[.5em] md:py-[1em] max-w-[1600px]">
+        <header className="flex justify-between items-center m-auto sticky top-0 bg-[var(--primary-bg-color)] py-[.5em] md:py-[1em] z-[1000]">
           <LogoFull />
 
           <nav className="flex gap-2 w-[100%] justify-end">
+            <button>
+              <ProfilePicture name="EV" />
+            </button>
+
             <Button variant="primary" icon={PlusCircleIcon}>Skill aanbieden</Button>
             <Button variant="secondary" icon={PlusCircleIcon}>Hulp vragen</Button>
           </nav>
