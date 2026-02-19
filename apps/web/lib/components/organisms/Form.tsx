@@ -1,4 +1,3 @@
-// components/AuthForm.tsx
 "use client";
 
 import { Button } from "@/lib/components";

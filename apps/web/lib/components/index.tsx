@@ -9,7 +9,6 @@ export { ProfilePicture } from "./atoms/ProfilePicture";
 // Molecules
 export { DiscussionCard } from "./molecules/DiscussionCard";
 export { Header } from "./molecules/Header";
-export { Switch } from "./molecules/Switch";
 export { PopupHeader } from "./molecules/PopupHeader";
 export { PopupOverlay } from "./molecules/PopupOverlay";
 

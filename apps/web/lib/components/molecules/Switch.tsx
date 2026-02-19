@@ -1,32 +1,43 @@
 "use client";
 
-import { Form } from "@/lib/components";
+import { useEffect } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 
 export function Switch() {
-    return (
-    
-    <div className="relative flex flex-col gap-3">
-        <input type="checkbox" id="toggle" className="peer w-[100%] h-[2.5em] absolute appearance-none" />
+  const router = useRouter();
+  const params = useSearchParams();
+  const mode = params.get("mode") === "register" ? "register" : "login";
 
-        <label htmlFor="toggle" className="relative flex bg-[#E5E7E2] p-1 rounded-full w-full before:absolute before:top-1 before:left-1 before:h-[calc(100%-8px)] before:w-[calc(50%-4px)] before:bg-[var(--third-bg-color)] before:rounded-full before:transition-transform before:duration-300 peer-checked:before:translate-x-full">
-            <span className="flex-1 text-center py-1 cursor-pointer relative z-10 text-[var(--primary-text-color)] peer-checked:text-[var(--primary-text-color)] transition">
-                Inloggen
-            </span>
-
-            <span className="flex-1 text-center py-1 cursor-pointer relative z-10 text-[var(--primary-text-color)] transition">
-                Registreren
-            </span>
-        </label>
-
-        <div className="peer-checked:hidden">
-            <Form type="login" />
-        </div>
-
-        {/* Register form */}
-        <div className="hidden peer-checked:block">
-            <Form type="register" />
-        </div>
-    </div>
-    );
+  function setMode(next: "login" | "register") {
+    router.push(`?mode=${next}`, { scroll: false });
   }
-  
+
+  useEffect(() => {
+    document.querySelectorAll(".test").forEach(element => {
+        element.classList.remove("hidden");
+        element.classList.add("block");
+    });
+}, []);
+
+  return (
+    <div className="flex flex-col gap-3">
+      <div className="relative flex bg-[#E5E7E2] p-1 rounded-full w-full">
+
+        {/* Witte background die heen en weer animeert bij het switchen */}
+        <span className={`absolute top-1 bottom-1 w-[calc(50%-4px)] rounded-full bg-[var(--third-bg-color)] transition-transform duration-300 ${mode === "register" ? "translate-x-full" : "translate-x-0"}`}/>
+
+        {/* Standaard staan deze knoppen uit en worden zichtbaar als JS aan staat*/}
+        <button onClick={() => setMode("login")} className="flex-1 py-1 relative z-10 hidden test cursor-pointer">Inloggen</button>
+        <button onClick={() => setMode("register")} className="flex-1 py-1 relative z-10 hidden test cursor-pointer">Registreren</button>
+
+        {/* Wanneer JS uit staat dan worden deze knoppen zichtbaar (de animatie van de switch is een enhancement)*/}
+        <noscript className="flex-1 py-1 text-center relative z-10 cursor-pointer">
+            <a className="w-[100%] block" href="?mode=login">Inloggen</a>
+        </noscript>
+        <noscript className="flex-1 py-1 text-center relative z-10 cursor-pointer">
+            <a className="w-[100%] block" href="?mode=register">Registreren</a>
+        </noscript>
+      </div>
+    </div>
+  );
+}
