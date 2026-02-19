@@ -11,11 +11,12 @@ export { DiscussionCard } from "./molecules/DiscussionCard";
 export { Header } from "./molecules/Header";
 export { PopupHeader } from "./molecules/PopupHeader";
 export { PopupOverlay } from "./molecules/PopupOverlay";
+export { Switch } from "./molecules/Switch";
 
 // Organisms
 export { Container } from "./organisms/Container";
 export { DiscussionCards } from "./organisms/DiscussionCards";
-export { PopupLogin } from "./organisms/PopupLogin";
+export { AuthPopup } from "./organisms/AuthPopup";
 export { Form } from "./organisms/Form";
 
 // Images
