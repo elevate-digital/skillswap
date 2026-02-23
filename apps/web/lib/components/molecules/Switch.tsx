@@ -17,7 +17,7 @@ export function Switch() {
         element.classList.remove("hidden");
         element.classList.add("block");
     });
-}, []);
+  }, []);
 
   return (
     <div className="flex flex-col gap-3">
