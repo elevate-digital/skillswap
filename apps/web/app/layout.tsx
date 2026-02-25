@@ -16,7 +16,7 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="icon" href="/assets/favicon.svg" />
+        <link rel="icon" href="/assets/favicon-dev.svg" />
 
         <link
           href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&display=swap"
