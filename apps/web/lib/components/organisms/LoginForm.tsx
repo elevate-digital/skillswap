@@ -29,8 +29,10 @@ export function LoginForm() {
 
   // Wordt uitgevoerd wanneer iemand op uitloggen klikt 
   const handleLogout = () => { 
-    setUser(null); localStorage.removeItem("user"); // Haal de user uit de state en LocalStorage
-    window.dispatchEvent(new Event("auth-changed")); // Zorgt ervoor dat andere compontenten weten dat de login status is veranderd
+    setUser(null);
+    setSuccess(false); // <-- toevoegen
+    localStorage.removeItem("user");
+    window.dispatchEvent(new Event("auth-changed"));
   };
 
   // Wordt uitgevoerd wanneer iemand op inloggen klikt
