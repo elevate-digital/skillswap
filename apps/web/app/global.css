@@ -39,7 +39,6 @@
 body {
     font-family: var(--primary-font);
     background-color: var(--primary-bg-color);
-    height: 200vh;
 }
 
 h1, h2, h3 {
@@ -86,6 +85,15 @@ p {
 *:focus-visible {
     outline: 3px dashed var(--primary-highlight-color);
     outline-offset: 4px;
+}
+
+/* Valid & Invalid state */
+.login-form input:not(:placeholder-shown):invalid {
+    @apply outline outline-red-500 outline-2 rounded-md;
+}
+
+.login-form input:not(:placeholder-shown):valid {
+    @apply outline outline-[#C3D9A5] outline-2 rounded-md;
 }
 
 /* Darkmode */
