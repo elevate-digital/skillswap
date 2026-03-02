@@ -7,23 +7,11 @@ import { Button } from "@/lib/components";
 import { ProfilePicture } from "@/lib/components";
 import { LogoFull } from "@/lib/assets/LogoFull";
 import { PlusCircleIcon, UserIcon } from "@phosphor-icons/react";
+import { useAuth } from "@/lib/components"
 
 export function Header() {
 
-    const [user, setUser] = useState(null);
-
-    useEffect(() => {
-    const loadUser = () => {
-      const savedUser = localStorage.getItem("user");
-      if (savedUser) setUser(JSON.parse(savedUser));
-      else setUser(null);
-    };
-
-    loadUser(); // initial load
-    window.addEventListener("auth-changed", loadUser);
-
-      return () => window.removeEventListener("auth-changed", loadUser);
-    }, []);
+    const { user } = useAuth();
 
     // Functie wordt maar één keer aangemaakt en blijft hetzelfde
     const scrollToSection = useCallback((id: string) => {

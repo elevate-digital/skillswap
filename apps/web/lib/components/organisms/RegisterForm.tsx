@@ -49,7 +49,7 @@ export function RegisterForm() {
 
       setSuccess(true);
 
-    } catch (erro: any) {
+    } catch (error: any) {
       console.error("Login failed:", error);
       setError("Registreren mislukt. Probeer opnieuw.");  
     } finally {
