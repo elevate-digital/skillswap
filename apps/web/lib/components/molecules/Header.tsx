@@ -1,7 +1,5 @@
 'use client'
 
-import { createContext, useEffect, useState } from 'react'
-
 import { useCallback } from "react";
 import { Button } from "@/lib/components";
 import { ProfilePicture } from "@/lib/components";
@@ -31,7 +29,7 @@ export function Header() {
           <nav className="flex gap-2 w-[100%] justify-end">
             {!user && (<a href="/login" className='flex items-center gap-1 self-center'><UserIcon /> Inloggen</a>)}
             
-            <a href="/login"><ProfilePicture /></a>
+            <a href="/login"><ProfilePicture name={user?.name || ""} /></a>
 
             <div className='hidden md:flex gap-2'>
               <Button variant="primary" icon={PlusCircleIcon}>Skill aanbieden</Button>

@@ -1,12 +1,13 @@
 "use client";
-import { useAuth } from "@/lib/components";
 
-export function ProfilePicture() {
-  const { user } = useAuth(); 
+type ProfilePictureProps = {
+  name: string;
+};
 
-  if (!user || !user.name) return null;
+export function ProfilePicture({ name }: ProfilePictureProps) {
+  if (!name) return null;
 
-  const parts = user.name.trim().split(" ");
+  const parts = name.trim().split(" ");
   const first = parts[0]?.[0] || "";
   const last = parts.length > 1 ? parts[parts.length - 1][0] : "";
   const initials = (first + last).toUpperCase();
