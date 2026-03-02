@@ -88,11 +88,13 @@ p {
 }
 
 /* Valid & Invalid state */
-.login-form input:not(:placeholder-shown):invalid {
+.login-form input:not(:placeholder-shown):invalid,
+.register-form input:not(:placeholder-shown):invalid {
     @apply outline outline-red-500 outline-2 rounded-md;
 }
 
-.login-form input:not(:placeholder-shown):valid {
+.login-form input:not(:placeholder-shown):valid,
+.register-form input:not(:placeholder-shown):valid {
     @apply outline outline-[#C3D9A5] outline-2 rounded-md;
 }
 
