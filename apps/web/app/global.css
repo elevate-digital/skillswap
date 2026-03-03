@@ -12,7 +12,7 @@
     --primary-text-color: #4C4C4C;
     --secondary-text-color: #EEF0EB;
     --third-text-color: #6B7280;
-    --primary-highlight-color: #FF4B4B;
+    --primary-highlight-color: #c52222;
     --secondary-highlight-color: #F3F7ED;
     --third-highlight-color: #E9EFFD;
 
@@ -77,7 +77,7 @@ h6 {
 
 p {
     font-size: 16px;
-    color: var(--third-text-color);
+    color: var(--primary-text-color);
     font-weight: var(--font-weight-r);
 }
 
