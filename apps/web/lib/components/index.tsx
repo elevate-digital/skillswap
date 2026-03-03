@@ -16,7 +16,7 @@ export { Input } from "./molecules/Input";
 export { EmailField } from "./molecules/EmailField";
 export { NameField} from "./molecules/NameField";
 export { PasswordField } from "./molecules/PasswordField";
-export { Provider } from "./molecules/Provider";
+export { Providers } from "./molecules/Providers";
 
 // Organisms
 export { Container } from "./organisms/Container";

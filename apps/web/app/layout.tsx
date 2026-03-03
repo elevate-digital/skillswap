@@ -4,7 +4,7 @@ import React from "react";
 import { Header } from "@/lib/components";
 import { Container } from "@/lib/components";
 import { AddButton } from "@/lib/components";
-import { Provider } from "@/lib/components";
+import { Providers } from "@/lib/components";
 
 export const metadata: Metadata = {
   title: "Skill Swap",
@@ -25,7 +25,7 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
         />
       </head>
       <body>
-        <Provider>
+        <Providers>
           <a className="absolute top-[-300px] focus:top-0 ease-in-out duration-200 left-1/2 transform -translate-x-1/2 z-[1100] bg-[var(--secondary-bg-color)] text-[var(--primary-text-color)] hover:bg-[var(--primary-text-color)] hover:text-[var(--secondary-text-color)] py-[7px] px-[10px] rounded-b-lg" href="#inhoud">Ga naar inhoud</a>
 
           <Container>
@@ -34,7 +34,7 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
 
             <AddButton />
           </Container>
-        </Provider>
+        </Providers>
       </body>
     </html>
   );
