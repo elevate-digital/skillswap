@@ -27,9 +27,9 @@ export function Header() {
           <LogoFull />
 
           <nav className="flex gap-2 w-[100%] justify-end">
-            {!user && (<a href="/login" className='flex items-center gap-1 self-center'><UserIcon /> Inloggen</a>)}
+            {!user && (<a href="/login" className='flex items-center gap-1 self-center'><UserIcon />Inloggen</a>)}
             
-            <a href="/login"><ProfilePicture name={user?.name || ""} /></a>
+            <a href="/login"><ProfilePicture name={user?.name || ""} /><span className="sr-only">Bekijk account</span></a>
 
             <div className='hidden md:flex gap-2'>
               <Button variant="primary" icon={PlusCircleIcon}>Skill aanbieden</Button>
