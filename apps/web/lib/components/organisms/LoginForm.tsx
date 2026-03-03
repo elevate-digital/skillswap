@@ -7,11 +7,10 @@ import { UserPlusIcon, UserIcon } from "@phosphor-icons/react";
 import { useAuth } from "@/lib/components";
 
 export function LoginForm() {
-  const { user, login, logout } = useAuth();
+  const { user, login, logout, status, setStatus, error, setError } = useAuth();
+  const [form, setForm] = useState({ email: "", password: "" });
 
-  const [form, setForm] = useState({ email: "", password: "" }); 
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle"); 
-  const [error, setError] = useState<string | null>(null);
+  console.log({ status, user });
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -34,28 +33,28 @@ export function LoginForm() {
       // user opslaan via context
       login(response.data.user);
       setStatus("success");
-    } catch (error) {
-      console.error("Login failed:", error);
-      setError("Onjuiste email of wachtwoord");
-      setStatus("error");
-  } 
-};
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        setError(err.response?.data?.message ?? err.message);
+      } else {
+        setError("Onbekende fout");
+      }
 
-  if (status === "loading") {
-    return (
-      <section className="flex flex-col gap-5 items-center bg-[#fff] px-[2em] py-[3em] rounded-[12px]">
-        <h2 className="text-blue-600 animate-pulse !text-[20px]">Bezig met inloggen…</h2>
-        <img className="animate-spin" src="/assets/loading-icon.svg" alt="" width={50} height={50} />
-      </section>
-    );
-  }
+      setStatus("error");
+    }
+  };
+
+  const handleLogout = () => {
+    logout();
+    setForm({ email: "", password: "" }); // reset input fields
+  };
 
   if (status === "success" && user) {
     return (
       <>
         <section className="flex flex-col gap-5 items-center bg-[#fff] px-[2em] py-[3em] rounded-[12px]">
-          <h2 className="text-green-600 !text-[20px]">Succesvol ingelogd!</h2>
-          <p className="text-green-600">Je bent ingelogd als {user.email}</p>
+          <h2 className="text-green-600 !text-[20px]">Je bent ingelogd</h2>
+          <p className="text-green-600">Ingelogd als: {user.email}</p>
           <a
             className="bg-[var(--secondary-bg-color)] text-[var(--primary-text-color)] hover:bg-[var(--primary-text-color)] hover:text-[var(--secondary-text-color)] flex items-center justify-center gap-3 rounded-[var(--border-radius-sm)] cursor-pointer transition-colors sm:p-[12px] lg:p-[12px] py-[7px] px-[10px] lg:py-[12px] lg:px-[32px]"
             href="/"
@@ -70,34 +69,7 @@ export function LoginForm() {
           <div className="flex-1 h-px bg-gray-300" />
         </div>
 
-        <Button type="button" variant="primary" onClick={logout}>
-          Uitloggen
-        </Button>
-      </>
-    );
-  }
-
-  if (user && status !== "success") {
-    return (
-      <>
-        <section className="flex flex-col gap-5 items-center bg-[#fff] px-[2em] py-[3em] rounded-[12px]">
-          <h2 className="text-green-600 !text-[20px]">Je bent ingelogd</h2>
-          <p className="text-green-600">Ingelogd als {user.email}</p>
-          <a
-            className="bg-[var(--secondary-bg-color)] text-[var(--primary-text-color)] hover:bg-[var(--primary-text-color)] hover:text-[var(--secondary-text-color)] flex items-center justify-center gap-3 rounded-[var(--border-radius-sm)] cursor-pointer transition-colors sm:p-[12px] lg:p-[12px] py-[7px] px-[10px] lg:py-[12px] lg:px-[32px]"
-            href="/"
-          >
-            <UserIcon />Naar dashboard
-          </a>
-        </section>
-
-        <div className="flex items-center gap-4 my-2 w-full">
-          <div className="flex-1 h-px bg-gray-300" />
-          <p className="text-green-600">Wissel van account</p>
-          <div className="flex-1 h-px bg-gray-300" />
-        </div>
-
-        <Button type="button" variant="primary" onClick={logout}>
+        <Button type="button" variant="primary" onClick={handleLogout}>
           Uitloggen
         </Button>
       </>
@@ -106,11 +78,10 @@ export function LoginForm() {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-3 login-form">
-      <EmailField name="email" label="Email" value={form.email} onChange={handleChange} placeholder="Bijv. janjansen@gmail.com" />
+      <EmailField name="email" label="Email" value={form.email} onChange={handleChange} placeholder="Bijv. janjansen@gmail.com" autoComplete="email" />
+      <PasswordField name="password" label="Password" value={form.password} onChange={handleChange} placeholder="Hier jouw wachtwoord" autoComplete="new-password" />
 
-      <PasswordField name="password" label="Password" value={form.password} onChange={handleChange} placeholder="Hier jouw wachtwoord" />
-
-      {error && <p className="text-red-600">{error}</p>}
+      {error && <p className="!text-red-600">{error}</p>}
 
       <Button type="submit" variant="secondary" icon={UserPlusIcon}>Inloggen</Button>
 
@@ -120,7 +91,7 @@ export function LoginForm() {
         <div className="flex-1 h-px bg-gray-300" />
       </div>
 
-      <a className="bg-[var(--primary-bg-color)] text-[var(--primary-text-color)] border-1 border-[var(--primary-text-color)] hover:bg-[var(--primary-text-color)] hover:text-[var(--secondary-text-color)] flex items-center justify-center gap-3 rounded-[var(--border-radius-sm)] cursor-pointer transition-colors sm:p-[12px] lg:p-[12px] py-[7px] px-[10px] lg:py-[12px] lg:px-[32px] "href="/" >
+      <a className="bg-[var(--primary-bg-color)] text-[var(--primary-text-color)] border-1 border-[var(--primary-text-color)] hover:bg-[var(--primary-text-color)] hover:text-[var(--secondary-text-color)] flex items-center justify-center gap-3 rounded-[var(--border-radius-sm)] cursor-pointer transition-colors sm:p-[12px] lg:p-[12px] py-[7px] px-[10px] lg:py-[12px] lg:px-[32px]"href="/" >
         <UserIcon height={20} width={20} />
         Ga naar dashboard
       </a>
