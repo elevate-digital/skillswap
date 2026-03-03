@@ -26,8 +26,10 @@ export function RegisterForm() {
       
     try {
       const response = await axios.post("/api/register", form, { 
-        headers: { "Content-Type": "application/json" } }
-    );
+        headers: { 
+          "Content-Type": "application/json" 
+        } 
+      });
 
       login(response.data.user);
       setStatus("success");
@@ -48,7 +50,7 @@ export function RegisterForm() {
       <>
         <section className="flex flex-col gap-5 items-center bg-[#fff] px-[2em] py-[3em] rounded-[12px]">
           <h2 className="text-green-600 !text-[20px]">Account succesvol aangemaakt!</h2>
-          <p className="text-green-600">Ingelogd als {user.email}</p>
+          <p className="text-green-600 text-center">Ingelogd als {user.email}</p>
 
           <a className="bg-[var(--secondary-bg-color)] text-[var(--primary-text-color)] hover:bg-[var(--primary-text-color)] hover:text-[var(--secondary-text-color)] flex items-center justify-center gap-3 rounded-[var(--border-radius-sm)] transition-colors lg:py-[12px] lg:px-[32px]" href="/">
             <UserIcon /> Ga naar dashboard

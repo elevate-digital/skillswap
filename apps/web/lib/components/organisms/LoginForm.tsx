@@ -54,7 +54,7 @@ export function LoginForm() {
       <>
         <section className="flex flex-col gap-5 items-center bg-[#fff] px-[2em] py-[3em] rounded-[12px]">
           <h2 className="text-green-600 !text-[20px]">Je bent ingelogd</h2>
-          <p className="text-green-600">Ingelogd als: {user.email}</p>
+          <p className="text-green-600 text-center">Ingelogd als: {user.email}</p>
           <a
             className="bg-[var(--secondary-bg-color)] text-[var(--primary-text-color)] hover:bg-[var(--primary-text-color)] hover:text-[var(--secondary-text-color)] flex items-center justify-center gap-3 rounded-[var(--border-radius-sm)] cursor-pointer transition-colors sm:p-[12px] lg:p-[12px] py-[7px] px-[10px] lg:py-[12px] lg:px-[32px]"
             href="/"
