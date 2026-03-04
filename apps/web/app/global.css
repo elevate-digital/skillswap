@@ -108,3 +108,7 @@ p {
         --primary-highlight-color: #dc3232;
     }
   }
+
+@view-transition {
+    navigation: auto;
+}
