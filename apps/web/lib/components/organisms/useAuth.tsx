@@ -26,14 +26,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     useEffect(() => { 
         const savedUser = localStorage.getItem("user"); 
+
         if (savedUser) { 
             setUser(JSON.parse(savedUser)); 
-            setStatus("success");
-        } 
-    }, []);
+            setStatus("success"); 
+        } else { 
+            setStatus("error"); } }, []);
 
     // Login functie
-    const login = (userData: User) => {
+    const login = (userData: User) => { 
         setUser(userData);
         localStorage.setItem("user", JSON.stringify(userData));
         setStatus("success");
