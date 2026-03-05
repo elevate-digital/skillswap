@@ -13,7 +13,7 @@ export default function Login() {
   const mode = params.get("mode") === "register" ? "register" : "login";
 
   return ( 
-    <main id="inhoud" className="py-[1em] md:py-[2em]">
+    <main id="inhoud" className="py-[1em] md:py-[2em] flex flex-col gap-5">
           <PopupOverlay>
             <AuthPopup title="Welkom bij SkillSwap" description="Log in of maak een account aan om skills te delen en hulp te vragen.">  
                 {mode === "login" && <LoginForm />}
@@ -21,7 +21,9 @@ export default function Login() {
             </AuthPopup>
           </PopupOverlay>
 
-          <DiscussionCard />
+        <DiscussionCard />
+        <DiscussionCard />
+        <DiscussionCard />
     </main>
   )
 }

@@ -1,28 +1,72 @@
-import React from "react";
+'use client';
 
-// Type definitie voor de props van de button component
+import React from "react";
+import { PlusCircleIcon } from "@phosphor-icons/react";
+
 type ButtonProps = {
   children?: React.ReactNode;
-  variant?: "primary" | "secondary"; // Voor het kiezen van de styling van de knop
-  icon?: React.ElementType; // Voor het kiezen van de juiste icon
-  type?: "button" | "submit" | "reset"; // Voor het bepalen van het type van de knop
+  variant?: "primary" | "secondary";
+  icon?: React.ElementType;
+  type?: "button" | "submit" | "reset";
   onClick?: () => void;
   disabled?: boolean;
+  className?: string;
 };
 
-// Verschillende variaties voor primaire en secundair knop
-const variantStyles = {
-  primary: "bg-[var(--primary-bg-color)] text-[var(--primary-text-color)] border-1 border-[var(--primary-text-color)] hover:bg-[var(--primary-text-color)] hover:text-[var(--secondary-text-color)]",
-  secondary: "bg-[var(--secondary-bg-color)] text-[var(--primary-text-color)] hover:bg-[var(--primary-text-color)] hover:text-[var(--secondary-text-color)]",
+const variants = {
+  primary: {
+    baseBg: "bg-[var(--secondary-bg-color)]",
+    hoverBg: "bg-[var(--primary-text-color)]",
+    text: "text-[var(--primary-text-color)]",
+    hoverText: "group-hover:!text-[var(--secondary-text-color)]",
+    baseBorder: "border-[var(--secondary-bg-color)]",
+    hoverBorder: "border-[var(--primary-text-color)]",
+  },
+  secondary: {
+    baseBg: "bg-[var(--primary-tbg-color)]",
+    hoverBg: "bg-[var(--primary-text-color)]",
+    text: "text-[var(--primary-text-color)]",
+    hoverText: "group-hover:!text-[var(--secondary-text-color)]",
+    baseBorder: "border-[var(--primary-text-color)]",
+    hoverBorder: "border-[var(--primary-text-color)]",
+  },
 };
 
-// Button component
-export function Button({ children, type = "button", variant = "secondary", icon: Icon, onClick, disabled }: ButtonProps) {
+export function Button({
+  children = "Klik hier",
+  variant = "secondary",
+  icon: Icon,
+  type = "button",
+  onClick,
+  disabled = false,
+  className = "",
+}: ButtonProps) {
+  const v = variants[variant];
 
   return (
-    <button type={type} onClick={onClick} disabled={disabled} className={`flex items-center justify-center gap-3 rounded-[var(--border-radius-sm)] cursor-pointer transition-colors ${variantStyles[variant]} ${!children && Icon ? "p-[12px] lg:p-[12px]" : "py-[7px] px-[10px] lg:py-[12px] lg:px-[32px]"}`}>
-      {Icon && (<Icon className={!children ? "block text-[22px] md:text-[20px]" : "hidden lg:block text-[24px] lg:text-[22px]"} />)}
-      {children}
+    <button type={type} onClick={onClick} disabled={disabled} className={`relative inline-flex items-center gap-2 py-[7px] px-[10px] lg:py-[12px] lg:px-[32px] group rounded-[var(--border-radius-sm)] overflow-hidden transition-colors duration-300 disabled:opacity-50 justify-center cursor-pointer ${className}`}>
+      {/* Base background */}
+      <span className={`absolute inset-0 ${v.baseBg}`} />
+
+      {/* Hover background reveal */}
+      <span className={`absolute inset-0 ${v.hoverBg} [clip-path:inset(0_100%_0_0)] transition-[clip-path] duration-300 ease-out group-hover:[clip-path:inset(0_0%_0_0)]`} />
+
+      {/* Base border */}
+      <span className={`pointer-events-none absolute inset-0 border ${v.baseBorder} rounded-[var(--border-radius-sm)]`} />
+
+      {/* Hover border reveal */}
+      <span className={`pointer-events-none absolute inset-0 border ${v.hoverBorder} rounded-[var(--border-radius-sm)] [clip-path:inset(0_100%_0_0)] transition-[clip-path] duration-300 ease-out group-hover:[clip-path:inset(0_0%_0_0)]`} />
+      
+      {/* Content */}
+      <span className="relative z-10 flex items-center gap-2">
+        {Icon && (
+          <Icon size={23} className={`transition-transform duration-300 transition-colors  ${v.text} ${v.hoverText} group-hover:rotate-y-180`} />
+        )}
+
+        <span className={`transition-colors duration-300 ${v.text} ${v.hoverText}`}>
+          {children}
+        </span>
+      </span>
     </button>
   );
 }

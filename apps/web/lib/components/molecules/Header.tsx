@@ -1,7 +1,7 @@
 'use client'
 
 import { useCallback } from "react";
-import { Button } from "@/lib/components";
+import { Link } from "@/lib/components";
 import { ProfilePicture } from "@/lib/components";
 import { LogoFull } from "@/lib/assets/LogoFull";
 import { PlusCircleIcon, UserIcon } from "@phosphor-icons/react";
@@ -32,8 +32,8 @@ export function Header() {
             <a href="/login"><ProfilePicture name={user?.name || ""} /><span className="sr-only">Bekijk account</span></a>
 
             <div className='hidden md:flex gap-2'>
-              <Button variant="primary" icon={PlusCircleIcon}>Skill aanbieden</Button>
-              <Button variant="secondary" icon={PlusCircleIcon}>Hulp vragen</Button>
+              <Link variant="primary" href="/" icon={PlusCircleIcon}>Skill aanbieden</Link>
+              <Link variant="secondary" href="/" icon={PlusCircleIcon}>Hulp vragen</Link>
             </div>
           </nav>
         </header>
