@@ -26,5 +26,5 @@ export { AuthPopup } from "./organisms/AuthPopup";
 export { LoginForm } from "./organisms/LoginForm";
 export { RegisterForm } from "./organisms/RegisterForm";
 export { AuthProvider, useAuth } from "./organisms/useAuth";
-export { SplashScreen } from "./molecules/SplashScreen";
+export { SplashScreen } from "./organisms/SplashScreen";
 export { PageTransition } from "./organisms/PageTransition";
