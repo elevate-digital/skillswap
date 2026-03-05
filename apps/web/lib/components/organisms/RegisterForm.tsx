@@ -6,7 +6,8 @@ import { Button } from "@/lib/components";
 import { UserPlusIcon, UserIcon } from "@phosphor-icons/react";
 import { NameField } from "@/lib/components";
 import { EmailField } from "@/lib/components";
-import { PasswordField, Link } from "@/lib/components";
+import { PasswordField } from "@/lib/components";
+import { Link } from "@/lib/components";
 import { useAuth } from "@/lib/components"
 
 export function RegisterForm() {
