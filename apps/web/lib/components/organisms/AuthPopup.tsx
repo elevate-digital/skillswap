@@ -1,8 +1,6 @@
 'use client'
 
-import { PopupHeader } from "@/lib/components";
-import { useAuth } from "@/lib/components";
-import { Switch } from "@/lib/components";
+import { useAuth, Switch, PopupHeader } from "@/lib/components";
 
 interface PopupProps {
   title: string;

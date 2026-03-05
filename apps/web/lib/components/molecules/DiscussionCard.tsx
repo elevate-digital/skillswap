@@ -2,9 +2,7 @@
 
 import React from 'react';
 import { ClockIcon, ChatCircleIcon, CalendarIcon } from "@phosphor-icons/react";
-import { Tag } from "@/lib/components";
-import { ProfilePicture } from "@/lib/components";
-import { IconBg } from "@/lib/components";
+import { Tag, ProfilePicture, IconBg } from "@/lib/components";
 
 export function DiscussionCard() {
     return (

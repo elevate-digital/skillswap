@@ -1,4 +1,5 @@
 "use client";
+
 import { GetInitials } from "@/lib/utils";
 
 type ProfilePictureProps = {

@@ -1,11 +1,7 @@
 'use client';
 
 import { useSearchParams } from "next/navigation";
-import { AuthPopup } from "@/lib/components";
-import { PopupOverlay } from "@/lib/components";
-import { LoginForm } from "@/lib/components";
-import { RegisterForm } from "@/lib/components";
-import { DiscussionCard } from "@/lib/components";
+import { AuthPopup, PopupOverlay, LoginForm, RegisterForm, DiscussionCard } from "@/lib/components";
 
 export default function Login() {
 

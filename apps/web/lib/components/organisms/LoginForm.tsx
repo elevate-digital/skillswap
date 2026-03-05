@@ -2,9 +2,8 @@
 
 import axios from "axios";
 import { useState } from "react";
-import { Button, PasswordField, EmailField, LinkButton } from "@/lib/components";
+import { Button, PasswordField, EmailField, LinkButton, useAuth } from "@/lib/components";
 import { UserPlusIcon, UserIcon } from "@phosphor-icons/react";
-import { useAuth } from "@/lib/components";
 
 export function LoginForm() {
   const { user, login, logout, status, setStatus, error, setError } = useAuth();

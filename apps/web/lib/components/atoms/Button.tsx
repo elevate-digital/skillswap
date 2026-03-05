@@ -1,7 +1,6 @@
 'use client';
 
 import React from "react";
-import { PlusCircleIcon } from "@phosphor-icons/react";
 
 type ButtonProps = {
   children?: React.ReactNode;

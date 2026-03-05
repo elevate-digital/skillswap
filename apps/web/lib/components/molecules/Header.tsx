@@ -1,11 +1,9 @@
-'use client'
+'use client';
 
 import { useCallback } from "react";
-import { LinkButton } from "@/lib/components";
-import { ProfilePicture } from "@/lib/components";
+import { LinkButton, ProfilePicture, useAuth } from "@/lib/components";
 import { LogoFull } from "@/lib/assets/LogoFull";
 import { PlusCircleIcon, UserIcon } from "@phosphor-icons/react";
-import { useAuth } from "@/lib/components"
 
 export function Header() {
 

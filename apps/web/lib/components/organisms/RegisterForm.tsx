@@ -4,11 +4,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Button } from "@/lib/components";
 import { UserPlusIcon, UserIcon } from "@phosphor-icons/react";
-import { NameField } from "@/lib/components";
-import { EmailField } from "@/lib/components";
-import { PasswordField } from "@/lib/components";
-import { LinkButton } from "@/lib/components";
-import { useAuth } from "@/lib/components"
+import { NameField, useAuth, EmailField, PasswordField, LinkButton } from "@/lib/components";
 
 export function RegisterForm() {
   const { user, login, status, setStatus, error, setError } = useAuth();
