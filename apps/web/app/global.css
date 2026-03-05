@@ -99,7 +99,7 @@ p {
 }
 
 /* Darkmode */
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
     :root {
         --primary-bg-color: #4C4C4C;
         --secondary-bg-color: #6E7467;
@@ -107,7 +107,7 @@ p {
         --secondary-text-color: #FFFFFF;
         --primary-highlight-color: #dc3232;
     }
-  }
+  } */
 
 @view-transition {
     navigation: auto;
