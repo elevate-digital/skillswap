@@ -4,6 +4,8 @@ SkillSwap is het platform dat studenten en junior developers helpt om kennis met
 
 **Doel:** Het uitwisselen van kennis voor beginnende frontend end devopers.
 
+![Group 284](https://github.com/user-attachments/assets/29f9d1f7-ad70-40cc-8546-1affb3ab42c4)
+
 ## Inhoudsopgave
 
   * [Beschrijving](#beschrijving)
