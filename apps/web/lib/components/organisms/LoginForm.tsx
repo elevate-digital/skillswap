@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import { useState } from "react";
-import { Button, PasswordField, EmailField, Link } from "@/lib/components";
+import { Button, PasswordField, EmailField, LinkButton } from "@/lib/components";
 import { UserPlusIcon, UserIcon } from "@phosphor-icons/react";
 import { useAuth } from "@/lib/components";
 
@@ -55,7 +55,7 @@ export function LoginForm() {
         <section className="flex flex-col gap-5 items-center bg-[#fff] px-[2em] py-[3em] rounded-[12px]">
           <h2 className="text-green-600 !text-[20px]">Je bent ingelogd</h2>
           <p className="text-green-600 text-center">Ingelogd als: {user.email}</p>
-          <Link variant="primary" icon={UserIcon} href="/">Naar dashboard</Link>
+          <LinkButton variant="primary" icon={UserIcon} href="/">Naar dashboard</LinkButton>
         </section>
 
         <div className="flex items-center gap-4 my-2 w-full">
@@ -86,7 +86,7 @@ export function LoginForm() {
         <div className="flex-1 h-px bg-gray-300" />
       </div>
 
-      <Link variant="secondary" icon={UserIcon} href="/">Naar dashboard</Link>
+      <LinkButton variant="secondary" icon={UserIcon} href="/">Naar dashboard</LinkButton>
     </form>
   );
 }

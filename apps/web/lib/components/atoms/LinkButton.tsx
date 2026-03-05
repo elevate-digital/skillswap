@@ -30,7 +30,7 @@ const variants = {
   },
 };
 
-export function Link({ children = "Klik hier", href = "#", variant = "secondary", icon: Icon = PlusCircleIcon, className = "",}: LinkProps) {
+export function LinkButton({ children = "Klik hier", href = "#", variant = "secondary", icon: Icon = PlusCircleIcon, className = "",}: LinkProps) {
     
     const v = variants[variant];
 
