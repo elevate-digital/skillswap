@@ -2,11 +2,13 @@
 
 import { createContext, useContext, useState, useEffect } from 'react';
 
+// User moet altijd een naam + email hebben
 type User = {
     name: string;
     email: string
 };
 
+// AuthContext heeft de volgende waardes en functies
 type AuthContextType = {
     user: User | null;
     status: "idle" | "loading" | "success" | "error";
@@ -17,21 +19,27 @@ type AuthContextType = {
     setError: (error: string | null) => void;
 }
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined); // de contect kan AuthContextType zijn of undefined
+// AuthContext aanmaken, begint als undefined
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+// 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-    const [user, setUser] = useState<User | null>(null);
-    const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-    const [error, setError] = useState<string | null>(null);
+    const [user, setUser] = useState<User | null>(null); // Huidige gebruiker, begint als null (niet ingelogd)
+    const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle"); // Status van authenticatie, begint als "idle"
+    const [error, setError] = useState<string | null>(null); // Eventuele foutmelding, begint als null (geen fout)
 
+    // Check of de gebruiker in de LocalStorage staat
     useEffect(() => { 
+
+        // Sla gebruiker op in de LocalStorage
         const savedUser = localStorage.getItem("user"); 
 
+        // Als een gebruiker is opgeslagen
         if (savedUser) { 
             setUser(JSON.parse(savedUser)); 
-            setStatus("success"); 
+            setStatus("success");  // Succes state tonen
         } else { 
-            setStatus("error"); } }, []);
+            setStatus("error"); } }, []); // Anders error state tonen
 
     // Login functie
     const login = (userData: User) => { 
@@ -56,6 +64,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     )
 }
 
+// Custom hook om de AuthContext te gebruiken in andere componenten
 export function useAuth() {
   const context = useContext(AuthContext);
   if (!context) {

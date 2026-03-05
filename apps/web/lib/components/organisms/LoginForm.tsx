@@ -6,22 +6,27 @@ import { Button, PasswordField, EmailField, LinkButton, useAuth } from "@/lib/co
 import { UserPlusIcon, UserIcon } from "@phosphor-icons/react";
 
 export function LoginForm() {
-  const { user, login, logout, status, setStatus, error, setError } = useAuth();
-  const [form, setForm] = useState({ email: "", password: "" });
 
-  console.log({ status, user });
+  // Objecten uit de useAuth ophalen 
+  const { user, login, logout, status, setStatus, error, setError } = useAuth();
+
+  // State voor de formuliervelden
+  const [form, setForm] = useState({ email: "", password: "" });
   
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setForm(prev => ({ ...prev, [name]: value }));
+  // Update de form state zodra een inputveld verandert
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;  // Haal veldnaam en ingevoerde waarde op
+    setForm(prev => ({ ...prev, [name]: value })); // Update alleen dat veld in de form state
   };
 
+  // Verwerkt het formulier bij het indienen
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setStatus("loading");
-    setError(null);
+    event.preventDefault(); // Voorkomt dat de pagina herlaadt
+    setStatus("loading"); // Zet status op loading
+    setError(null); // Reset eventuele eerdere foutmelding
 
     try {
+      // Stuur de login gegevens naar de API endpoint
       const response = await axios.post("/api/login", form, {
         headers: {
           "Content-Type": "application/json",
@@ -29,17 +34,17 @@ export function LoginForm() {
         }
       });
 
-      // user opslaan via context
-      login(response.data.user);
-      setStatus("success");
+      login(response.data.user); // Gebruiker opslaan in localStorage
+      setStatus("success"); // Zet status op success (success state)
+
     } catch (err) {
       if (axios.isAxiosError(err)) {
-        setError(err.response?.data?.message ?? err.message);
+        setError(err.response?.data?.message ?? err.message); // Specifieke foutmelding laten zien
       } else {
         setError("Onbekende fout");
       }
 
-      setStatus("error");
+      setStatus("error"); // Zet status op error (error state)
     }
   };
 
@@ -48,6 +53,7 @@ export function LoginForm() {
     setForm({ email: "", password: "" }); // reset input fields
   };
 
+  // Als de gebruiker is ingelogd
   if (status === "success" && user) {
     return (
       <>
@@ -71,6 +77,7 @@ export function LoginForm() {
   }
 
   return (
+    // Standaard formulier voor inloggen van gebruiker
     <form onSubmit={handleSubmit} className="flex flex-col gap-3 login-form">
       <EmailField name="email" label="Email" value={form.email} onChange={handleChange} placeholder="Bijv. janjansen@gmail.com" autoComplete="email" />
       <PasswordField name="password" label="Password" value={form.password} onChange={handleChange} placeholder="Hier jouw wachtwoord" autoComplete="new-password" />

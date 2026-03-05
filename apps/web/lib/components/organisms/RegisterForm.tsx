@@ -7,33 +7,39 @@ import { UserPlusIcon, UserIcon } from "@phosphor-icons/react";
 import { NameField, useAuth, EmailField, PasswordField, LinkButton } from "@/lib/components";
 
 export function RegisterForm() {
+
+  // Objecten uit de useAuth ophalen 
   const { user, login, status, setStatus, error, setError } = useAuth();
+
+  // State voor de formuliervelden
   const [form, setForm] = useState({ name: "", email: "", password: "" });
 
+  // Update de form state zodra een inputveld verandert
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setForm(prev => ({ ...prev, [name]: value}))
+    const { name, value } = event.target; // Haal veldnaam en ingevoerde waarde op
+    setForm(prev => ({ ...prev, [name]: value})) // Update alleen dat veld in de form state
   }
 
+  // Verwerkt het formulier bij het indienen
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    setStatus("loading"); 
-    setError(null);
+    event.preventDefault(); // Voorkomt dat de pagina herlaadt
+    setStatus("loading"); // Zet status op loading
+    setError(null); // Reset eventuele eerdere foutmelding
       
     try {
+      // Stuur de register gegevens naar de API endpoint
       const response = await axios.post("/api/register", form, { 
         headers: { 
           "Content-Type": "application/json" 
         } 
       });
 
-      login(response.data.user);
-      setStatus("success");
+      login(response.data.user); // Gebruiker opslaan in localStorage
+      setStatus("success"); // Zet status op success (success state)
 
     } catch (err) {
       if (axios.isAxiosError(err)) {
-        setError(err.response?.data?.message ?? err.message);
+        setError(err.response?.data?.message ?? err.message); // Specifieke foutmelding laten zien
       } else {
         setError("Onbekende fout");
       }
@@ -42,6 +48,7 @@ export function RegisterForm() {
     }
   }
 
+  // Als de gebruiker is ingelogd
   if (status === "success" && user) {
     return (
       <>
@@ -56,6 +63,7 @@ export function RegisterForm() {
   }
 
   return (
+    // Standaard formulier voor inloggen van gebruiker
     <form onSubmit={handleSubmit} className="flex flex-col gap-3 register-form">
       <NameField name="name" label="Naam"value={form.name} onChange={handleChange} placeholder="Bijv. Jan Jansen" autoComplete="name" />
       <EmailField name="email" label="Email" value={form.email} onChange={handleChange} placeholder="Bijv. janjansen@gmail.com" autoComplete="email" />
