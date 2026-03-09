@@ -1,135 +1,62 @@
-# Turborepo starter
+## SkillSwap
 
-This Turborepo starter is maintained by the Turborepo core team.
+SkillSwap is het platform dat studenten en junior developers helpt om kennis met elkaar uit te wisselen. Je kunt jouw eigen Skill aanbieden of jouw vraag aanmaken. Hier kan kennis voor uitgewisseld worden te commenten op de skill of vraag. 
 
-## Using this example
+**Doel:** Het uitwisselen van kennis voor beginnende frontend end devopers.
 
-Run the following command:
+![Group 284](https://github.com/user-attachments/assets/29f9d1f7-ad70-40cc-8546-1affb3ab42c4)
 
-```sh
-npx create-turbo@latest
-```
+## Inhoudsopgave
 
-## What's inside?
+  * [Beschrijving](#beschrijving)
+  * [Installatie](#installatie)
+  * [Licentie](#licentie)
 
-This Turborepo includes the following packages/apps:
+## Beschrijving
+### Ontwerpkeuzes
+- Zacht groen en wit geven het ontwerp een frisse, rustige en toegankelijke uitstraling.
+- Moderne sans‑serif typografie zorgt voor een strakke, eigentijdse look en goede leesbaarheid.
+- Veel witruimte maakt het ontwerp overzichtelijk en laat belangrijke elementen beter opvallen.
+- Subtiele groentinten en lichte accenten creëren visuele hiërarchie zonder drukte.
+- Responsive ontwerp zorgt dat alle onderdelen mooi meeschalen op mobiel, tablet en desktop.
+- Toegankelijke kleurcontrasten verbeteren de leesbaarheid voor alle gebruikers.
+- Minimalistische iconen en zachte vormen versterken de vriendelijke, moderne uitstraling.
 
-### Apps and Packages
+### Styleguide
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+<img width="866" height="457" alt="image" src="https://github.com/user-attachments/assets/ebe346d0-d155-4f64-a408-e621c7133cb8" />
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+### Belangrijke features
+#### Splash Screen
 
-### Utilities
+https://github.com/user-attachments/assets/658692fb-4c5c-4112-8357-a986c2eca23d
 
-This Turborepo has some additional tools already setup for you:
+#### Multi page view transition
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+https://github.com/user-attachments/assets/a32ec420-7f04-4fbe-bcd1-ba9da3f1a404
 
-### Build
+## Installatie
+Volg deze stappen om SkillSwap lokaal op je computer te installeren en te draaien:
 
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
-```
-
-You can build a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+1. Repository clonen
 
 ```
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
-
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
+git clone https://github.com/<jouw-gebruikersnaam>/SkillSwap.git
+cd SkillSwap
 ```
 
-### Develop
-
-To develop all apps and packages, run the following command:
+3. Dependencies installeren
 
 ```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
-
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
+npm install
 ```
 
-You can develop a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+3. Project starten
 
 ```
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
-
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
+npm run dev
 ```
 
-### Remote Caching
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
-
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
-
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.dev/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.dev/docs/reference/configuration)
-- [CLI Usage](https://turborepo.dev/docs/reference/command-line-reference)
+## Licentie
+This project is licensed under the terms of the [MIT license](./LICENSE).
