@@ -15,8 +15,11 @@ export { PopupOverlay } from "./molecules/PopupOverlay";
 export { Switch } from "./molecules/Switch";
 export { Input } from "./molecules/Input";
 export { EmailField } from "./molecules/EmailField";
-export { NameField} from "./molecules/NameField";
+export { NameField } from "./molecules/NameField";
+export { TextField } from "./molecules/TextField";
 export { PasswordField } from "./molecules/PasswordField";
+export { TagsField } from "./molecules/TagsField";
+export { Result } from "./molecules/Result";
 export { Providers } from "./molecules/Providers";
 
 // Organisms
@@ -24,7 +27,9 @@ export { Container } from "./organisms/Container";
 export { DiscussionCards } from "./organisms/DiscussionCards";
 export { AuthPopup } from "./organisms/AuthPopup";
 export { LoginForm } from "./organisms/LoginForm";
+export { SkillForm } from "./organisms/SkillForm";
 export { RegisterForm } from "./organisms/RegisterForm";
+export { ResultPanel } from "./organisms/ResultPanel";
 export { AuthProvider, useAuth } from "./organisms/useAuth";
 export { SplashScreen } from "./organisms/SplashScreen";
 export { PageTransition } from "./organisms/PageTransition";
