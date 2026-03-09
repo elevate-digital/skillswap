@@ -30,8 +30,8 @@ export function Header() {
             <a href="/login"><ProfilePicture name={user?.name || ""} /><span className="sr-only">Bekijk account</span></a>
 
             <div className='hidden md:flex gap-2'>
-              <LinkButton variant="primary" href="/" icon={PlusCircleIcon}>Skill aanbieden</LinkButton>
-              <LinkButton variant="secondary" href="/" icon={PlusCircleIcon}>Hulp vragen</LinkButton>
+              <LinkButton variant="primary" href="/skill-aanvraag" icon={PlusCircleIcon}>Skill aanbieden</LinkButton>
+              <LinkButton variant="secondary" href="/hulp-nodig" icon={PlusCircleIcon}>Hulp vragen</LinkButton>
             </div>
           </nav>
         </header>

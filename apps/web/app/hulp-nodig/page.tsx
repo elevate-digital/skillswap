@@ -1,11 +1,20 @@
 'use client';
 
-import { DiscussionCard } from "@/lib/components";
+import { AuthPopup, PopupOverlay, SkillForm, DiscussionCard } from "@/lib/components";
 
 export default function Hulp() {
-  return (  
+
+  return ( 
     <main id="inhoud" className="py-[1em] md:py-[2em] flex flex-col gap-5">
-      <DiscussionCard />
+          <PopupOverlay>
+            <AuthPopup title="Vraag om hulp" description="Loop je ergens tegen aan? Vraag andere developers om hulp." showSwitch={false}>  
+                <SkillForm />
+            </AuthPopup>
+          </PopupOverlay>
+
+        <DiscussionCard />
+        <DiscussionCard />
+        <DiscussionCard />
     </main>
   )
 }
