@@ -1,15 +1,17 @@
 'use client'
 
 import { useAuth, Switch, PopupHeader } from "@/lib/components";
+import { PlusIcon } from "@phosphor-icons/react";
 
 interface PopupProps {
   title: string;
   description: string;
   icon?: React.ReactNode;
   children?: React.ReactNode;
+  showSwitch?: boolean;
 }
 
-export function AuthPopup({ title, description, icon, children }: PopupProps) {
+export function AuthPopup({ title, description, icon, children, showSwitch = true }: PopupProps) {
   const { user, status } = useAuth();
 
   if (status === "loading") {
@@ -22,9 +24,10 @@ export function AuthPopup({ title, description, icon, children }: PopupProps) {
   }
 
   return (
-    <section className="px-[1.5em] py-[3em] flex flex-col gap-3 w-[90%] max-w-[500px] rounded-[var(--border-radius-md)] bg-[var(--primary-bg-color)]">
+    <section className="relative px-[1.5em] py-[3em] flex flex-col gap-3 w-[90%] max-w-[500px] rounded-[var(--border-radius-md)] bg-[var(--primary-bg-color)]">
+      <a href="/" className="absolute right-[2em]"><span className="sr-only">Sluit popup</span><PlusIcon width={26} height={26} className="rotate-45" /></a>
       {!user && <PopupHeader title={title} description={description} icon={icon} />}
-      {!user && <Switch />}
+      {!user && showSwitch && <Switch />}
       {children}
     </section>
   );
