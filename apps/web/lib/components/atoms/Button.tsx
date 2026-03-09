@@ -43,7 +43,7 @@ export function Button({
   const v = variants[variant];
 
   return (
-    <button type={type} onClick={onClick} disabled={disabled} className={`relative inline-flex items-center gap-2 py-[7px] px-[10px] lg:py-[12px] lg:px-[32px] group rounded-[var(--border-radius-sm)] overflow-hidden transition-colors duration-300 disabled:opacity-50 justify-center cursor-pointer ${className}`}>
+    <button type={type} onClick={onClick} disabled={disabled} className={`relative inline-flex items-center gap-2 py-[7px] px-[10px] w-[8em] lg:py-[12px] lg:px-[32px] group rounded-[var(--border-radius-sm)] overflow-hidden transition-colors duration-300 disabled:opacity-50 justify-center cursor-pointer ${className}`}>
       {/* Base background */}
       <span className={`absolute inset-0 ${v.baseBg}`} />
 
