@@ -10,6 +10,14 @@ const nextConfig = {
         source: "/api/login",
         destination: "https://skillswap-api-yw06.onrender.com/user/login",
       },
+      {
+        source: "/api/tag",
+        destination: "https://skillswap-api-yw06.onrender.com/tag",
+      },
+      {
+        source: "/api/skill",
+        destination: "https://skillswap-api-yw06.onrender.com/skill",
+      },
     ];
   },
 };
