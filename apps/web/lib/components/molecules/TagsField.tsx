@@ -80,17 +80,19 @@ export function TagsField({ value, onChange, ...props }: TagsFieldProps) {
         ))}
       </div>
 
-      <div className="flex flex-col gap-1 pt-[.7em]">
-        <span>Populaire tags:</span>
-
-        <div className="flex flex-wrap gap-2 mt-2">
-          {popularTags.map(tag => (
-            
-            <button key={tag.id} type="button" onClick={() => addTagFromPopular(tag.title)} className="text-[16px] text-[var(--primary-text-color)] px-2 border border-[#D9D9D9] rounded-full cursor-pointer hover:bg-[#D9D9D9] transition">
+      <div className="flex flex-wrap gap-2 mt-2">
+        {popularTags.map(tag => {
+          const isSelected = value.includes(tag.title); // check of tag al toegevoegd is
+          return (
+            <button key={tag.id} type="button" onClick={() => addTagFromPopular(tag.title)} className={`text-[16px] px-2 border rounded-full cursor-pointer transition 
+              ${ isSelected
+                  ? "bg-[#D9D9D9] border-[#D9D9D9]"
+                  : "text-[var(--primary-text-color)] border-[#D9D9D9] hover:bg-[#D9D9D9]"
+              }`} >
               {tag.title}
             </button>
-          ))}
-        </div>
+          );
+        })}
       </div>
     </div>
   );
