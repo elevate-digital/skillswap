@@ -16,7 +16,7 @@ const variants = {
     baseBg: "bg-[var(--secondary-bg-color)]",
     hoverBg: "bg-[var(--primary-text-color)]",
     text: "text-[var(--primary-text-color)]",
-    hoverText: "!text-[var(--secondary-text-color)]",
+    hoverText: "group-hover:!text-[var(--secondary-text-color)]",
     baseBorder: "border-[var(--secondary-bg-color)]",
     hoverBorder: "border-[var(--primary-text-color)]",
   },
@@ -24,7 +24,7 @@ const variants = {
     baseBg: "bg-[var(--primary-tbg-color)]",
     hoverBg: "bg-[var(--primary-text-color)]",
     text: "text-[var(--primary-text-color)]",
-    hoverText: "!text-[var(--secondary-text-color)]",
+    hoverText: "group-hover:!text-[var(--secondary-text-color)]",
     baseBorder: "border-[var(--primary-text-color)]",
     hoverBorder: "border-[var(--primary-text-color)]",
   },
@@ -35,11 +35,11 @@ export function LinkButton({ children = "Klik hier", href = "#", variant = "seco
     const v = variants[variant];
 
      const paddingClasses = children
-    ? "py-[15px] pl-[15px] pr-[8px] lg:py-[12px] lg:px-[32px]"
+    ? "lg:py-[12px] lg:px-[32px]"
     : "p-[8px] lg:p-[12px]";
 
     return (
-        <a href={href} className={`relative inline-flex items-center justify-center gap-2 ${paddingClasses} lg:py-[12px] lg:px-[32px] group rounded-[var(--border-radius-sm)] overflow-hidden ${className}`}>
+        <a href={href} className={`relative inline-flex items-center justify-center gap-2 ${paddingClasses} py-[7px] px-[10px] md:py-[12px] md:px-[32px] group rounded-[var(--border-radius-sm)] overflow-hidden ${className}`}>
             {/* Base background */}
             <span className={`absolute inset-0 ${v.baseBg}`} />
 
@@ -55,10 +55,10 @@ export function LinkButton({ children = "Klik hier", href = "#", variant = "seco
             {/* Content */}
             <span className="relative z-10 flex items-center gap-2">
                 {Icon && (
-                    <Icon size={22} className={`transition-transform duration-300 transition-colors duration-300 ${v.text} group-hover:${v.hoverText} group-hover:rotate-y-180`} />
+                    <Icon size={22} className={`transition-transform duration-300 transition-colors duration-300 ${v.text} ${v.hoverText} group-hover:rotate-y-180`} />
                 )}
 
-                <span className={`transition-colors duration-300 ${v.text} group-hover:${v.hoverText}`}>
+                <span className={`transition-colors duration-300 ${v.text} ${v.hoverText}`}>
                     {children}
                 </span>
             </span>

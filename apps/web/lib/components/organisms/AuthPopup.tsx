@@ -9,9 +9,10 @@ interface PopupProps {
   icon?: React.ReactNode;
   children?: React.ReactNode;
   showSwitch?: boolean;
+  showHeader?: boolean;
 }
 
-export function AuthPopup({ title, description, icon, children, showSwitch = true }: PopupProps) {
+export function AuthPopup({ title, description, icon, children, showSwitch, showHeader }: PopupProps) {
   const { user, status } = useAuth();
 
   if (status === "loading") {
@@ -23,11 +24,22 @@ export function AuthPopup({ title, description, icon, children, showSwitch = tru
     );
   }
 
+  const shouldShowHeader = showHeader ?? !user;
+  const shouldShowSwitch = showSwitch ?? !user;
+
   return (
     <section className="relative px-[1.5em] py-[3em] flex flex-col gap-3 w-[90%] max-w-[500px] rounded-[var(--border-radius-md)] bg-[var(--primary-bg-color)]">
-      <a href="/" className="absolute right-[2em]"><span className="sr-only">Sluit popup</span><PlusIcon width={26} height={26} className="rotate-45" /></a>
-      {!user && <PopupHeader title={title} description={description} icon={icon} />}
-      {!user && showSwitch && <Switch />}
+      <a href="/" className="absolute right-[1.2em] top-[1em]"><span className="sr-only">Sluit popup</span><PlusIcon width={26} height={26} className="rotate-45" /></a>
+      {shouldShowHeader && (
+        <PopupHeader
+          title={title}
+          description={description}
+          icon={icon}
+        />
+      )}
+
+      {shouldShowSwitch && <Switch />}
+
       {children}
     </section>
   );
