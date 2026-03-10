@@ -1,5 +1,7 @@
 'use client';
 
+export const dynamic = "force-dynamic";
+
 import { useSearchParams } from "next/navigation";
 import { AuthPopup, PopupOverlay, LoginForm, RegisterForm, DiscussionCard } from "@/lib/components";
 
