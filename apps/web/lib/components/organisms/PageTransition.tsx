@@ -15,13 +15,14 @@ interface PageTransitionProps {
 export function PageTransition({ children }: PageTransitionProps) {
   const pathname = usePathname(); // Om te checken ofdat de route veranderd
   const [loading, setLoading] = useState(true); // Standaard true zodat de loader direct wordt getoond bij laden pagina
+  const delayTransition = 1000;
 
   useEffect(() => {
     setLoading(true); // Zet loading op true bij route verandering
 
     const timeout = setTimeout(() => {
       setLoading(false); // Zet loading op false na 1 seconde, zodat de loader minimaal 1 seconde zichtbaar is
-    }, 1000);
+    }, delayTransition);
 
     return () => clearTimeout(timeout); 
   }, [pathname]); // Wanneer de pathname verandert, wordt loading weer op true gezet en start de timeout opnieuw

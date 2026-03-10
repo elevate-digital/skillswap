@@ -9,6 +9,7 @@ import { useAuth } from "@/lib/components";
 export function SplashScreen() {
   const { status } = useAuth();
   const [showSplash, setShowSplash] = useState(false); // Staat standaard op false, we tonen de splash alleen als de gebruiker nog niet eerder op de site is geweest
+  const delaySplash = 1800;
 
   // Eerst checken of de gebruiker al eens op de site is geweest (via localStorage) en alleen dan de splash tonen
   useEffect(() => {
@@ -29,7 +30,7 @@ export function SplashScreen() {
     if (status !== "loading") {
       const timeout = setTimeout(() => {
         setShowSplash(false);
-      }, 1800);
+      }, delaySplash);
 
       return () => clearTimeout(timeout);
     }
