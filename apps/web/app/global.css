@@ -112,3 +112,13 @@ p {
 @view-transition {
     navigation: auto;
 }
+
+/* Hide page transition when JavaScript is disabled */
+html:not(.js) .page-transition-loader {
+    display: none !important;
+}
+
+html:not(.js) .page-transition-content {
+    opacity: 1 !important;
+    transform: none !important;
+}

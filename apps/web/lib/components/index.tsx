@@ -19,7 +19,6 @@ export { NameField } from "./molecules/NameField";
 export { TextField } from "./molecules/TextField";
 export { PasswordField } from "./molecules/PasswordField";
 export { TagsField } from "./molecules/TagsField";
-export { Result } from "./molecules/Result";
 export { Providers } from "./molecules/Providers";
 
 // Organisms
@@ -29,7 +28,6 @@ export { AuthPopup } from "./organisms/AuthPopup";
 export { LoginForm } from "./organisms/LoginForm";
 export { SkillForm } from "./organisms/SkillForm";
 export { RegisterForm } from "./organisms/RegisterForm";
-export { ResultPanel } from "./organisms/ResultPanel";
 export { AuthProvider, useAuth } from "./organisms/useAuth";
 export { SplashScreen } from "./organisms/SplashScreen";
 export { PageTransition } from "./organisms/PageTransition";
