@@ -7,7 +7,7 @@ import skillswapSplash from "@/lib/assets/skillswap-loader.json";
 import { useAuth } from "@/lib/components";
 
 export function SplashScreen() {
-  const { status } = useAuth();
+  const { authStatus } = useAuth();
   const [showSplash, setShowSplash] = useState(false); // Staat standaard op false, we tonen de splash alleen als de gebruiker nog niet eerder op de site is geweest
   const delaySplash = 1800;
 
@@ -27,14 +27,14 @@ export function SplashScreen() {
     if (!showSplash) return;
 
     // Wanneer de status verandert van "loading" naar iets anders, start een timer om de splash te verbergen
-    if (status !== "loading") {
+    if (authStatus !== "loading") {
       const timeout = setTimeout(() => {
         setShowSplash(false);
       }, delaySplash);
 
       return () => clearTimeout(timeout);
     }
-  }, [status, showSplash]);
+  }, [authStatus, showSplash]);
 
   return (
     // AnimatePresence zorgt ervoor dat de exit animatie wordt afgespeeld wanneer showSplash verandert naar false

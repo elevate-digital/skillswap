@@ -27,6 +27,7 @@ export { DiscussionCards } from "./organisms/DiscussionCards";
 export { AuthPopup } from "./organisms/AuthPopup";
 export { LoginForm } from "./organisms/LoginForm";
 export { SkillForm } from "./organisms/SkillForm";
+export { RequestForm } from "./organisms/RequestForm";
 export { RegisterForm } from "./organisms/RegisterForm";
 export { AuthProvider, useAuth } from "./organisms/useAuth";
 export { SplashScreen } from "./organisms/SplashScreen";
