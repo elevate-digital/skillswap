@@ -45,6 +45,15 @@ export function PageTransition({ children }: PageTransitionProps) {
   const lottieRef = useRef<AnimationItem | null>(null); // Lottie animatie referentie
   const loaderPhaseRef = useRef<"forward" | "reverse">("forward"); // Houdt bij of de loader vooruit of achteruit speelt
 
+  // Detecteer reduced motion
+  const prefersReducedMotion = typeof window !== "undefined" 
+    && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Pas transition aan bij reduced motion
+  const effectiveTransition = prefersReducedMotion
+    ? { y: { duration: 0 }, opacity: { duration: 0 } }
+    : pageTransition;
+
   useEffect(() => {
     setLoading(true); // Zodra het pad veranderd laadt de pagina
     loaderPhaseRef.current = "forward"; // Animiatie speelt op volgorde af
@@ -67,14 +76,14 @@ export function PageTransition({ children }: PageTransitionProps) {
     <>
       {/* AnimatePresence zorgt ervoor dat exit-animaties */}
       <AnimatePresence mode="sync">
-        {loading && (
+        {loading && !prefersReducedMotion && (
           <motion.div key="loader" initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.25, ease: "easeOut" }} className="page-transition-loader fixed inset-0 z-10 flex items-center justify-center bg-[var(--primary-bg-color)]">
             <Lottie ref={lottieRef} animationData={skillswapLoader} play loop={false} speed={1.2} direction={1} segments={[15, 60]} onComplete={handleLottieComplete} style={{ width: 400, height: 400 }} />
           </motion.div>
         )}
       </AnimatePresence>
       <AnimatePresence mode="sync">
-        <motion.div key={pathname} variants={pageVariants} initial="initial" animate={loading ? "initial" : "animate"} exit="exit" transition={pageTransition} className="page-transition-content">
+        <motion.div key={pathname} variants={pageVariants} initial="initial" animate={loading ? "initial" : "animate"} exit="exit" transition={effectiveTransition} className="page-transition-content">
           {children}
         </motion.div>
       </AnimatePresence>
