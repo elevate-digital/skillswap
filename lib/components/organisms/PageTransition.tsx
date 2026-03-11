@@ -2,12 +2,12 @@
 
 import React, { ReactNode, useCallback, useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
-import type Lottie from "react-lottie-player";
+import Lottie from "react-lottie-player";
 import type { AnimationItem } from "lottie-web";
 import { AnimatePresence, motion } from "framer-motion";
 import skillswapLoader from "@/lib/assets/loader-arrows-only.json";
 
-// Props voor PageTransition component
+// TypeScript voor props van Page Transition
 interface PageTransitionProps {
   children?: ReactNode;
 }
@@ -43,18 +43,18 @@ export function PageTransition({ children }: PageTransitionProps) {
   const pathname = usePathname(); // Huidige url pad ophalen  
   const [loading, setLoading] = useState(true); // Checked of de pagina aan het laden is
   const lottieRef = useRef<AnimationItem | null>(null); // Lottie animatie referentie
-  const loaderDirection = useRef<"forward" | "reverse">("forward"); // Houdt bij of de loader vooruit of achteruit speelt
+  const loaderPhaseRef = useRef<"forward" | "reverse">("forward"); // Houdt bij of de loader vooruit of achteruit speelt
 
   useEffect(() => {
     setLoading(true); // Zodra het pad veranderd laadt de pagina
-    loaderDirection.current = "forward"; // Animiatie speelt op volgorde af
+    loaderPhaseRef.current = "forward"; // Animiatie speelt op volgorde af
   }, [pathname]);
 
   // Functie die ervoor zorgt dat de animatie reverse afspeelt
   const handleLottieComplete = useCallback(() => {
     // Als de animatie afgespeeld is, speel dan de animatie reverse af
-    if (loaderDirection.current === "forward") {
-      loaderDirection.current = "reverse";
+    if (loaderPhaseRef.current === "forward") {
+      loaderPhaseRef.current = "reverse";
       lottieRef.current?.setDirection(-1); // Speel de animatie achteruit af
       lottieRef.current?.play(); // Start de animatie
     } else {
@@ -65,7 +65,7 @@ export function PageTransition({ children }: PageTransitionProps) {
 
   return (
     <>
-      {/* Zorgt dat exit-animaties afspelen wanneer componenten uit de DOM verdwijnen */}
+      {/* AnimatePresence zorgt ervoor dat exit-animaties */}
       <AnimatePresence mode="sync">
         {loading && (
           <motion.div key="loader" initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.25, ease: "easeOut" }} className="page-transition-loader fixed inset-0 z-10 flex items-center justify-center bg-[var(--primary-bg-color)]">
