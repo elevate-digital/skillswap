@@ -25,28 +25,40 @@ export function RegisterForm() {
     event.preventDefault(); // Voorkomt dat de pagina herlaadt
     setStatus("loading"); // Zet status op loading
     setError(null); // Reset eventuele eerdere foutmelding
-      
+
     try {
-      // Stuur de register gegevens naar de API endpoint
-      const response = await axios.post("/api/register", form, { 
-        headers: { 
-          "Content-Type": "application/json" 
-        } 
+      // Registratie gegevens opslaan
+      const registerResponse = await axios.post("/api/register", form, {
+        headers: { "Content-Type": "application/json", "Accept": "application/json" }
       });
 
-      login(response.data.user); // Gebruiker opslaan in localStorage
-      setStatus("success"); // Zet status op success (success state)
+      console.log("Register response:", registerResponse.data);
 
-    } catch (err) {
+      // Na succesvolle registratie, automatisch inloggen met dezelfde gegevens
+      const loginResponse = await axios.post("/api/login", {
+        email: form.email,
+        password: form.password
+      }, {
+        headers: { 
+          "Content-Type": "application/json", 
+          "Accept": "application/json" 
+        }
+      });
+
+      console.log("Login response:", loginResponse.data);
+
+      login(loginResponse.data.user, loginResponse.data.token); // Sla de gebruiker en token op in LocalStorage
+      setStatus("success");
+
+    } catch (err: any) {
       if (axios.isAxiosError(err)) {
-        setError(err.response?.data?.message ?? err.message); // Specifieke foutmelding laten zien
+        setError(err.response?.data?.message ?? err.message);
       } else {
         setError("Onbekende fout");
       }
-
       setStatus("error");
     }
-  }
+  };
 
   // Als de gebruiker is ingelogd
   if (status === "success" && user) {

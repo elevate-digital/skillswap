@@ -11,9 +11,10 @@ type User = {
 // AuthContext heeft de volgende waardes en functies
 type AuthContextType = {
     user: User | null;
+    token: string | null;
     status: "idle" | "loading" | "success" | "error";
     error: string | null;
-    login: (userData: User) => void;
+    login: (userData: User, token: string) => void;
     logout: () => void;
     setStatus: (status: "idle" | "loading" | "success" | "error") => void;
     setError: (error: string | null) => void;
@@ -27,24 +28,34 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const [user, setUser] = useState<User | null>(null); // Huidige gebruiker, begint als null (niet ingelogd)
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle"); // Status van authenticatie, begint als "idle"
     const [error, setError] = useState<string | null>(null); // Eventuele foutmelding, begint als null (geen fout)
+    const [token, setToken] = useState<string | null>(null);
 
     // Check of de gebruiker in de LocalStorage staat
     useEffect(() => { 
 
         // Sla gebruiker op in de LocalStorage
         const savedUser = localStorage.getItem("user"); 
+        const savedToken = localStorage.getItem("token");
 
-        // Als een gebruiker is opgeslagen
-        if (savedUser) { 
-            setUser(JSON.parse(savedUser)); 
-            setStatus("success");  // Succes state tonen
-        } else { 
-            setStatus("error"); } }, []); // Anders error state tonen
+        console.log("token:", savedToken);
+
+        if (savedUser && savedToken) {
+            setUser(JSON.parse(savedUser));
+            setToken(savedToken);
+            setStatus("success");
+        } else {
+            setStatus("idle");
+        }
+    }, []);
 
     // Login functie
-    const login = (userData: User) => { 
+    const login = (userData: User, token: string) => {
         setUser(userData);
+        setToken(token);
+
         localStorage.setItem("user", JSON.stringify(userData));
+        localStorage.setItem("token", token);
+
         setStatus("success");
         setError(null);
     }
@@ -52,13 +63,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     // Logout functie
     const logout = () => {
         setUser(null);
+        setToken(null);
+
         localStorage.removeItem("user");
+        localStorage.removeItem("token");
+
         setStatus("idle");
         setError(null);
     }
 
     return (
-        <AuthContext.Provider value={{ user, login, logout, status, error, setStatus, setError }}>
+        <AuthContext.Provider value={{ user, token, login, logout, status, error, setStatus, setError }}>
             {children}
         </AuthContext.Provider>
     )

@@ -34,7 +34,9 @@ export function LoginForm() {
         }
       });
 
-      login(response.data.user); // Gebruiker opslaan in localStorage
+      console.log("API response:", response.data);
+
+      login(response.data.user, response.data.token); // Gebruiker opslaan in localStorage
       setStatus("success"); // Zet status op success (success state)
 
     } catch (err) {
