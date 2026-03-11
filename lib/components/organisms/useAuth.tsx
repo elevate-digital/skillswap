@@ -2,53 +2,66 @@
 
 import { createContext, useContext, useState, useEffect } from 'react';
 
-// User moet altijd een naam + email hebben
 type User = {
     name: string;
-    email: string
+    email: string;
 };
 
-// AuthContext heeft de volgende waardes en functies
 type AuthContextType = {
     user: User | null;
     token: string | null;
-    status: "idle" | "loading" | "success" | "error";
-    error: string | null;
+
+    // Authenticatie State
+    authStatus: "idle" | "loading" | "authenticated" | "error";
+    authError: string | null;
     login: (userData: User, token: string) => void;
     logout: () => void;
-    setStatus: (status: "idle" | "loading" | "success" | "error") => void;
-    setError: (error: string | null) => void;
-}
+    setAuthStatus: (status: "idle" | "loading" | "authenticated" | "error") => void;
+    setAuthError: (error: string | null) => void;
 
-// AuthContext aanmaken, begint als undefined
+    // Formulier state
+    formStatus: "idle" | "loading" | "success" | "error";
+    formError: string | null;
+    setFormStatus: (status: "idle" | "loading" | "success" | "error") => void;
+    setFormError: (error: string | null) => void;
+    resetFormState: () => void;
+};
+
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-    const [user, setUser] = useState<User | null>(null); // Huidige gebruiker, begint als null (niet ingelogd)
-    const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle"); // Status van authenticatie, begint als "idle"
-    const [error, setError] = useState<string | null>(null); // Eventuele foutmelding, begint als null (geen fout)
+    const [user, setUser] = useState<User | null>(null);
     const [token, setToken] = useState<string | null>(null);
 
-    // Check of de gebruiker in de LocalStorage staat
-    useEffect(() => { 
+    // Authenticatie State
+    const [authStatus, setAuthStatus] = useState<"idle" | "loading" | "authenticated" | "error">("idle");
+    const [authError, setAuthError] = useState<string | null>(null);
 
-        // Sla gebruiker op in de LocalStorage
-        const savedUser = localStorage.getItem("user"); 
+    // Formulier state
+    const [formStatus, setFormStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+    const [formError, setFormError] = useState<string | null>(null);
+
+    // Functie om formulier state te resetten (Skill en Hulp formulier)
+    const resetFormState = () => {
+        setFormStatus("idle");
+        setFormError(null);
+    };
+
+    // Controleer bij het laden van de app of er al een gebruiker en token in localStorage staan
+    useEffect(() => {
+        const savedUser = localStorage.getItem("user");
         const savedToken = localStorage.getItem("token");
-
-        console.log("token:", savedToken);
 
         if (savedUser && savedToken) {
             setUser(JSON.parse(savedUser));
             setToken(savedToken);
-            setStatus("success");
+            setAuthStatus("authenticated");
         } else {
-            setStatus("idle");
+            setAuthStatus("idle");
         }
     }, []);
 
-    // Login functie
+    // Functie om in te loggen: sla gebruiker en token op in state en localStorage
     const login = (userData: User, token: string) => {
         setUser(userData);
         setToken(token);
@@ -56,11 +69,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         localStorage.setItem("user", JSON.stringify(userData));
         localStorage.setItem("token", token);
 
-        setStatus("success");
-        setError(null);
-    }
+        setAuthStatus("authenticated");
+        setAuthError(null);
+    };
 
-    // Logout functie
+    // Functie om uit te loggen: verwijder gebruiker en token uit state en localStorage
     const logout = () => {
         setUser(null);
         setToken(null);
@@ -68,22 +81,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         localStorage.removeItem("user");
         localStorage.removeItem("token");
 
-        setStatus("idle");
-        setError(null);
-    }
+        setAuthStatus("idle");
+        setAuthError(null);
+    };
 
     return (
-        <AuthContext.Provider value={{ user, token, login, logout, status, error, setStatus, setError }}>
+        <AuthContext.Provider value={{ user, token, authStatus, authError, login, logout, setAuthStatus, setAuthError, formStatus, formError, setFormStatus, setFormError, resetFormState }}>
             {children}
         </AuthContext.Provider>
-    )
+    );
 }
 
-// Custom hook om de AuthContext te gebruiken in andere componenten
 export function useAuth() {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error("useAuth moet gebruikt worden binnen AuthProvider");
-  }
-  return context;
+    const context = useContext(AuthContext);
+    if (!context) {
+        throw new Error("useAuth moet gebruikt worden binnen AuthProvider");
+    }
+    return context;
 }

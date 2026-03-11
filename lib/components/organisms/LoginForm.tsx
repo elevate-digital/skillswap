@@ -8,7 +8,7 @@ import { UserPlusIcon, UserIcon } from "@phosphor-icons/react";
 export function LoginForm() {
 
   // Objecten uit de useAuth ophalen 
-  const { user, login, logout, status, setStatus, error, setError } = useAuth();
+  const { user, login, logout, authStatus, setAuthStatus, authError, setAuthError } = useAuth();
 
   // State voor de formuliervelden
   const [form, setForm] = useState({ email: "", password: "" });
@@ -22,8 +22,8 @@ export function LoginForm() {
   // Verwerkt het formulier bij het indienen
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault(); // Voorkomt dat de pagina herlaadt
-    setStatus("loading"); // Zet status op loading
-    setError(null); // Reset eventuele eerdere foutmelding
+    setAuthStatus("loading");
+    setAuthError(null);
 
     try {
       // Stuur de login gegevens naar de API endpoint
@@ -37,16 +37,16 @@ export function LoginForm() {
       console.log("API response:", response.data);
 
       login(response.data.user, response.data.token); // Gebruiker opslaan in localStorage
-      setStatus("success"); // Zet status op success (success state)
+      setAuthStatus("authenticated"); // Zet status op success (success state)
 
     } catch (err) {
       if (axios.isAxiosError(err)) {
-        setError(err.response?.data?.message ?? err.message); // Specifieke foutmelding laten zien
+        setAuthError(err.response?.data?.message ?? err.message); // Specifieke foutmelding laten zien
       } else {
-        setError("Onbekende fout");
+        setAuthError("Onbekende fout");
       }
 
-      setStatus("error"); // Zet status op error (error state)
+      setAuthStatus("error"); // Zet status op error (error state)
     }
   };
 
@@ -56,7 +56,7 @@ export function LoginForm() {
   };
 
   // Als de gebruiker is ingelogd
-  if (status === "success" && user) {
+  if (authStatus === "authenticated" && user) {
     return (
       <>
         <section className="flex flex-col gap-5 items-center bg-[#fff] px-[2em] py-[3em] rounded-[12px]">
@@ -84,7 +84,7 @@ export function LoginForm() {
       <EmailField name="email" label="Email" value={form.email} onChange={handleChange} placeholder="Bijv. janjansen@gmail.com" autoComplete="email" />
       <PasswordField name="password" label="Password" value={form.password} onChange={handleChange} placeholder="Hier jouw wachtwoord" autoComplete="new-password" />
 
-      {error && <p className="!text-red-600">{error}</p>}
+      {authError && <p className="!text-red-600">{authError}</p>}
 
       <Button type="submit" variant="primary" icon={UserPlusIcon}>Inloggen</Button>
 

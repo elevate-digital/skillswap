@@ -13,9 +13,9 @@ interface PopupProps {
 }
 
 export function AuthPopup({ title, description, icon, children, showSwitch, showHeader }: PopupProps) {
-  const { user, status } = useAuth();
+  const { user, authStatus, formStatus } = useAuth();
 
-  if (status === "loading") {
+  if (authStatus === "loading" || formStatus === "loading") {
     return (
       <section className="px-[1.5em] py-[3em] flex flex-col gap-3 w-[90%] max-w-[500px] rounded-[var(--border-radius-md)] bg-[var(--primary-bg-color)] items-center">
         <p className="text-blue-600 animate-pulse">Bezig met laden…</p>
@@ -24,7 +24,7 @@ export function AuthPopup({ title, description, icon, children, showSwitch, show
     );
   }
 
-  const shouldShowHeader = showHeader ?? !user;
+  const shouldShowHeader = (showHeader ?? !user) && formStatus !== "success";
   const shouldShowSwitch = showSwitch ?? !user;
 
   return (

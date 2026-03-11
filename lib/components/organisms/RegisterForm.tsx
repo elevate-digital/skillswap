@@ -9,7 +9,7 @@ import { NameField, useAuth, EmailField, PasswordField, LinkButton } from "@/lib
 export function RegisterForm() {
 
   // Objecten uit de useAuth ophalen 
-  const { user, login, status, setStatus, error, setError } = useAuth();
+  const { user, login, logout, authStatus, setAuthStatus, authError, setAuthError } = useAuth();
 
   // State voor de formuliervelden
   const [form, setForm] = useState({ name: "", email: "", password: "" });
@@ -23,8 +23,8 @@ export function RegisterForm() {
   // Verwerkt het formulier bij het indienen
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault(); // Voorkomt dat de pagina herlaadt
-    setStatus("loading"); // Zet status op loading
-    setError(null); // Reset eventuele eerdere foutmelding
+    setAuthStatus("loading"); // Zet status op loading
+    setAuthError(null); // Reset eventuele eerdere foutmelding
 
     try {
       // Registratie gegevens opslaan
@@ -48,20 +48,20 @@ export function RegisterForm() {
       console.log("Login response:", loginResponse.data);
 
       login(loginResponse.data.user, loginResponse.data.token); // Sla de gebruiker en token op in LocalStorage
-      setStatus("success");
+      setAuthStatus("authenticated");
 
     } catch (err: any) {
       if (axios.isAxiosError(err)) {
-        setError(err.response?.data?.message ?? err.message);
+        setAuthError(err.response?.data?.message ?? err.message);
       } else {
-        setError("Onbekende fout");
+        setAuthError("Onbekende fout");
       }
-      setStatus("error");
+      setAuthStatus("error");
     }
   };
 
   // Als de gebruiker is ingelogd
-  if (status === "success" && user) {
+    if (authStatus === "authenticated" && user) {
     return (
       <>
         <section className="flex flex-col gap-5 items-center bg-[#fff] px-[2em] py-[3em] rounded-[12px]">
@@ -81,7 +81,7 @@ export function RegisterForm() {
       <EmailField name="email" label="Email" value={form.email} onChange={handleChange} placeholder="Bijv. janjansen@gmail.com" autoComplete="email" />
       <PasswordField name="password" label="Wachtwoord" value={form.password} onChange={handleChange} placeholder="Vul wachtwoord in" autoComplete="new-password" />
 
-      {error && <p className="!text-red-600">{error}</p>}
+      {authError && <p className="!text-red-600">{authError}</p>}
 
       <Button type="submit" variant="primary" icon={UserPlusIcon}>Account aanmaken</Button>
 
