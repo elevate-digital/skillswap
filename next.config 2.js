@@ -11,6 +11,14 @@ const nextConfig = {
         destination: "https://skillswap-api-yw06.onrender.com/user/login",
       },
       {
+        source: "/api/tag/find-or-create",
+        destination: "https://skillswap-api-yw06.onrender.com/tag/find-or-create",
+      },
+      {
+        source: "/api/tag/:id",
+        destination: "https://skillswap-api-yw06.onrender.com/tag/:id",
+      },
+      {
         source: "/api/tag",
         destination: "https://skillswap-api-yw06.onrender.com/tag",
       },
