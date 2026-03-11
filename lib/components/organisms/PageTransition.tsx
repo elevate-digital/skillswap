@@ -81,8 +81,6 @@ export function PageTransition({ children }: PageTransitionProps) {
             <Lottie ref={lottieRef} animationData={skillswapLoader} play loop={false} speed={1.2} direction={1} segments={[15, 60]} onComplete={handleLottieComplete} style={{ width: 400, height: 400 }} />
           </motion.div>
         )}
-      </AnimatePresence>
-      <AnimatePresence mode="sync">
         <motion.div key={pathname} variants={pageVariants} initial="initial" animate={loading ? "initial" : "animate"} exit="exit" transition={effectiveTransition} className="page-transition-content">
           {children}
         </motion.div>
