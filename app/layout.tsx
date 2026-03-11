@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import "./global.css";
 import React from "react";
 import { Header, Container, AddButton, Providers, SplashScreen, PageTransition } from "@/lib/components";
-import Script from 'next/script';
-
 
 export const metadata: Metadata = {
   title: "Skill Swap",
@@ -14,11 +12,11 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
   return (
     <html lang="en" className="no-js">
       <head>
-        {/* JS detectie voor no-js / js class */}
-        <Script strategy="beforeInteractive">
-          {`document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');`}
-        </Script>
-
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');",
+          }}
+        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="icon" href="/assets/favicon-dev.svg" />
