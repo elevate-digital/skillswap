@@ -26,7 +26,7 @@ export { Container } from "./organisms/Container";
 export { DiscussionCards } from "./organisms/DiscussionCards";
 export { AuthPopup } from "./organisms/AuthPopup";
 export { LoginForm } from "./organisms/LoginForm";
-export { SkillForm } from "./organisms/SkillForm";
+export { OfferForm } from "./organisms/OfferForm";
 export { RequestForm } from "./organisms/RequestForm";
 export { RegisterForm } from "./organisms/RegisterForm";
 export { AuthProvider, useAuth } from "./organisms/useAuth";

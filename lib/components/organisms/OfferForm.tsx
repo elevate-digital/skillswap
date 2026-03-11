@@ -4,7 +4,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useAuth, TextField, TagsField, Button, LinkButton } from "@/lib/components";
 
-export function SkillForm() {
+export function OfferForm() {
     const [tags, setTags] = useState<string[]>([]);
     const [form, setForm] = useState({ title: "", description: "", type: "OFFER" });
 

@@ -123,12 +123,6 @@ export function TagsField({ value, onChange, ...props }: TagsFieldProps) {
         </Button>
       </div>
 
-      <datalist id="tag-suggestions">
-        {popularTags.map((tag) => (
-          <option key={tag.id} value={tag.title} />
-        ))}
-      </datalist>
-
       <div className="flex flex-wrap gap-2 pt-1">
         {value.map((tag) => (
           <button
