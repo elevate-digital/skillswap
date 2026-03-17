@@ -1,3 +1,5 @@
+'use client';
+
 import { DiscussionCards } from "@/lib/components";
 
 export default function Home() {

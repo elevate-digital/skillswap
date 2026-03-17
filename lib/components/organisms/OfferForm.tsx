@@ -67,7 +67,7 @@ export function OfferForm() {
                     <h2 className="text-green-600 !text-[20px]">Skill toegevoegd!</h2>
                     <p className="text-green-600 text-center">Je skill is succesvol opgeslagen.</p>
 
-                    <LinkButton variant="primary" href="/">Bekijk skills</LinkButton>
+                    <LinkButton variant="primary" href="/">Bekijk alle skills</LinkButton>
                 </section>
 
                 <div className="flex items-center gap-4 my-2 w-full">
