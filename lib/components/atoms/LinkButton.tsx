@@ -36,7 +36,7 @@ export function LinkButton({ children = "Klik hier", href = "#", variant = "seco
     const paddingClasses = children ? "lg:py-[12px] lg:px-[32px]" : "p-[8px] lg:p-[12px]";
 
     return (
-        <a href={href} className={`relative inline-flex items-center justify-center gap-2 ${paddingClasses} py-[7px] px-[10px] md:py-[12px] md:px-[32px] group rounded-[var(--border-radius-sm)] overflow-hidden ${className}`}>
+        <a href={href} className={`relative inline-flex items-center justify-center gap-2 ${paddingClasses} py-[12px] px-[16px] md:py-[12px] md:px-[32px] group rounded-[var(--border-radius-sm)] overflow-hidden ${className}`}>
             {/* Base background */}
             <span className={`absolute inset-0 ${v.baseBg}`} />
 

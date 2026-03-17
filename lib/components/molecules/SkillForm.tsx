@@ -104,7 +104,7 @@ export function SkillForm({
 
             <div className="h-[1px] bg-[#CBCBCB] w-full mt-3"></div>
 
-            <div className="flex items-center gap-2 justify-end pt-3">
+            <div className="flex flex-col-reverse md:flex-row md:items-center gap-2 justify-end pt-3">
                 <LinkButton variant="secondary">Annuleren</LinkButton>
                 <Button type="submit" variant="primary" icon={PlusCircleIcon} disabled={SkillFormStatus === "loading"}>
                     {submitLabel}

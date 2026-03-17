@@ -63,7 +63,7 @@ export function TagsField({ value, onChange, ...props }: TagsFieldProps) {
       <label>Tags (max 5)</label>
 
       <div className="flex gap-2">
-        <Input {...props} value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => {
+        <Input {...props} value={input} className="flex-1 min-w-0" onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => {
             if (e.key === "Enter") {
               e.preventDefault();
               addTag();
