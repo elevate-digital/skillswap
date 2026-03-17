@@ -1,7 +1,6 @@
 'use client';
 
 import React from "react";
-import { PlusCircleIcon } from "@phosphor-icons/react";
 
 type ButtonProps = {
   children?: React.ReactNode;
@@ -32,19 +31,14 @@ const variants = {
   },
 };
 
-export function Button({
-  children = "Klik hier",
-  variant = "secondary",
-  icon: Icon,
-  type = "button",
-  onClick,
-  disabled = false,
-  className = "",
-}: ButtonProps) {
+export function Button({ children = "Klik hier", variant = "secondary", icon: Icon, type = "button", onClick, disabled = false, className = "", }: ButtonProps) {
+
   const v = variants[variant];
 
+  const paddingClasses = children ? "lg:py-[12px] lg:px-[32px]" : "p-[8px] lg:p-[12px]";
+
   return (
-    <button type={type} onClick={onClick} disabled={disabled} className={`relative inline-flex items-center gap-2 py-[7px] px-[10px] md:py-[12px] lg:px-[32px] group rounded-[var(--border-radius-sm)] overflow-hidden transition-colors duration-300 disabled:opacity-50 justify-center cursor-pointer ${className}`}>
+    <button type={type} onClick={onClick} disabled={disabled} className={`relative inline-flex items-center justify-center gap-2 ${paddingClasses} py-[7px] px-[10px] md:py-[12px] md:px-[32px] group rounded-[var(--border-radius-sm)] overflow-hidden ${className} cursor-pointer`}>
       {/* Base background */}
       <span className={`absolute inset-0 ${v.baseBg}`} />
 
@@ -60,7 +54,7 @@ export function Button({
       {/* Content */}
       <span className="relative z-10 flex items-center gap-2">
         {Icon && (
-          <Icon size={23} className={`transition-transform duration-300 transition-colors  ${v.text} ${v.hoverText} group-hover:rotate-y-180`} />
+          <Icon size={22} className={`transition-transform duration-300 transition-colors duration-300 ${v.text} ${v.hoverText} group-hover:rotate-y-180`} />
         )}
 
         <span className={`transition-colors duration-300 ${v.text} ${v.hoverText}`}>

@@ -3,6 +3,7 @@
 import axios from "axios"; 
 import { useState } from "react";
 import { useAuth, useSkills, TextField, TagsField, Button, LinkButton } from "@/lib/components";
+import { PlusCircleIcon } from "@phosphor-icons/react";
 
 export function RequestForm() {
     const [tags, setTags] = useState<string[]>([]);
@@ -77,7 +78,7 @@ export function RequestForm() {
                     <div className="flex-1 h-px bg-gray-300" />
                 </div>
 
-               <Button variant="secondary" onClick={() => { setForm({ title: "", description: "", type: "REQUEST" }); setTags([]); setSkillFormStatus("idle"); setSkillFormError(null); }}>
+               <Button icon={PlusCircleIcon} variant="secondary" onClick={() => { setForm({ title: "", description: "", type: "REQUEST" }); setTags([]); setSkillFormStatus("idle"); setSkillFormError(null); }}>
                     Nieuwe vraag toevoegen
                 </Button>
             </>
@@ -97,7 +98,7 @@ export function RequestForm() {
 
             <div className="flex items-center gap-2 justify-end pt-3">
                 <LinkButton variant="secondary">Annuleren</LinkButton>
-                <Button type="submit" variant="primary">Vraag toevoegen</Button>
+                <Button type="submit" variant="primary" icon={PlusCircleIcon}>Vraag toevoegen</Button>
             </div>
         </form>
     );

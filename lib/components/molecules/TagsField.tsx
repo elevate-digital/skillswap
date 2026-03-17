@@ -115,16 +115,24 @@ export function TagsField({ value, onChange, ...props }: TagsFieldProps) {
       </div>
 
       {/* Populaire tags */}
-      <div className="flex flex-wrap gap-2 mt-2">
-        {popularTags.map((tag) => {
-          const isSelected = value.includes(tag.title);
-
-          return (
-            <button key={tag.id} type="button" onClick={() => addTagFromPopular(tag.title)} className={`text-[16px] px-2 border rounded-full cursor-pointer transition ${ isSelected ? "bg-[#D9D9D9] border-[#D9D9D9]" : "text-[var(--primary-text-color)] border-[#D9D9D9] hover:bg-[#D9D9D9]"}`}>
-              {tag.title}
-            </button>
-          );
-        })}
+      <div className="flex flex-col">
+        <p>Populaire tags:</p>
+        <ul className="flex flex-wrap gap-2 mt-2">
+          {popularTags.map((tag) => {
+            const isSelected = value.includes(tag.title);
+            return (
+              <li key={tag.id}>
+                <button
+                  type="button"
+                  onClick={() => addTagFromPopular(tag.title)}
+                  className={`text-[16px] px-2 border rounded-full cursor-pointer transition ${
+                    isSelected ? "bg-[#D9D9D9] border-[#D9D9D9]" : "text-[var(--primary-text-color)] border-[#D9D9D9] hover:bg-[#D9D9D9]" }`}>
+                  {tag.title}
+                </button>
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </div>
   );

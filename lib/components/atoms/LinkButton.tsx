@@ -1,7 +1,6 @@
 'use client';
 
 import React from "react";
-import { PlusCircleIcon } from "@phosphor-icons/react";
 
 type LinkProps = {
   children?: React.ReactNode;
@@ -30,13 +29,11 @@ const variants = {
   },
 };
 
-export function LinkButton({ children = "Klik hier", href = "#", variant = "secondary", icon: Icon = PlusCircleIcon, className = "",}: LinkProps) {
+export function LinkButton({ children = "Klik hier", href = "#", variant = "secondary", icon: Icon, className = "",}: LinkProps) {
     
     const v = variants[variant];
 
-     const paddingClasses = children
-    ? "lg:py-[12px] lg:px-[32px]"
-    : "p-[8px] lg:p-[12px]";
+    const paddingClasses = children ? "lg:py-[12px] lg:px-[32px]" : "p-[8px] lg:p-[12px]";
 
     return (
         <a href={href} className={`relative inline-flex items-center justify-center gap-2 ${paddingClasses} py-[7px] px-[10px] md:py-[12px] md:px-[32px] group rounded-[var(--border-radius-sm)] overflow-hidden ${className}`}>
