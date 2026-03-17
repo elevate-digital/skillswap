@@ -1,5 +1,3 @@
-'use client';
-
 import { AuthPopup, PopupOverlay, OfferForm, DiscussionCards } from "@/lib/components";
 
 export default function Skill() {

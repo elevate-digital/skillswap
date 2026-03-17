@@ -1,5 +1,3 @@
-'use client';
-
 import { AuthPopup, PopupOverlay, RequestForm, DiscussionCards } from "@/lib/components";
 
 export default function Hulp() {
