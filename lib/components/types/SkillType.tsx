@@ -1,15 +1,6 @@
-export type TagType = {
-  id: number;
-  title: string;
-};
+import type { UserType, TagType } from "@/lib/components";
 
-export type UserType = {
-  id: number;
-  name: string;
-  email: string;
-};
-
-export type SkillItem = {
+export type SkillType = {
   id: number;               // uniek id van de skill
   title: string;            // titel van de skill/vraag
   description: string;      // beschrijving van de vraag/skill

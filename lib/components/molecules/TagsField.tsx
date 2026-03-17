@@ -3,16 +3,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Input, Button } from "@/lib/components";
-import { useAuth } from "@/lib/components";
-
-// Props voor een tag object
-type Tag = {
-  id: number;
-  title: string;
-  _count: {
-    skills: number;
-  };
-};
+import { useAuth, TagType } from "@/lib/components";
 
 // Props voor de TagsField component
 type TagsFieldProps = {
@@ -22,7 +13,7 @@ type TagsFieldProps = {
 
 export function TagsField({ value, onChange, ...props }: TagsFieldProps) {
   const [input, setInput] = useState("");
-  const [popularTags, setPopularTags] = useState<Tag[]>([]);
+  const [popularTags, setPopularTags] = useState<TagType[]>([]);
 
   const { token } = useAuth();
 
@@ -30,7 +21,7 @@ export function TagsField({ value, onChange, ...props }: TagsFieldProps) {
   useEffect(() => {
     async function fetchTags() {
       try {
-        const response = await axios.get<Tag[]>("/api/tag");
+        const response = await axios.get<TagType[]>("/api/tag");
 
         const sorted = response.data
           .sort((a, b) => b._count.skills - a._count.skills)

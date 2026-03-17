@@ -1,12 +1,12 @@
 'use client';
 import { createContext, useContext, useState, useEffect } from "react";
-import type { SkillItem } from "@/lib/components";
+import type { SkillType } from "@/lib/components";
 
 import axios from "axios";
 
 type SkillsContextType = {
-  skills: SkillItem[];
-  addSkill: (skill: SkillItem) => void;
+  skills: SkillType[];
+  addSkill: (skill: SkillType) => void;
   fetchSkills: () => void;
 
   // Skill Form state
@@ -19,7 +19,7 @@ type SkillsContextType = {
 const SkillsContext = createContext<SkillsContextType | undefined>(undefined);
 
 export function SkillsProvider({ children }: { children: React.ReactNode }) {
-  const [skills, setSkills] = useState<SkillItem[]>([]);
+  const [skills, setSkills] = useState<SkillType[]>([]);
   const [SkillFormStatus, setSkillFormStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [SkillFormError, setSkillFormError] = useState<string | null>(null);
 
@@ -32,7 +32,7 @@ export function SkillsProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const addSkill = (skill: SkillItem) => {
+  const addSkill = (skill: SkillType) => {
     setSkills(prev => [skill, ...prev]);
   };
 

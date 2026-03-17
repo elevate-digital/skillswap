@@ -1,9 +1,9 @@
 "use client";
 
 import { ClockIcon, ChatCircleIcon, CalendarIcon } from "@phosphor-icons/react";
-import { Tag, ProfilePicture, IconBg, SkillItem } from "@/lib/components";
+import { Tag, ProfilePicture, IconBg, SkillType } from "@/lib/components";
 
-export function DiscussionCard({ item }: { item: SkillItem }) {
+export function DiscussionCard({ item }: { item: SkillType }) {
   const statusLabel = item.completed ? "Gesloten" : "Open";
 
   return (
