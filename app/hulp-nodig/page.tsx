@@ -1,6 +1,6 @@
 'use client';
 
-import { AuthPopup, PopupOverlay, RequestForm, DiscussionCard } from "@/lib/components";
+import { AuthPopup, PopupOverlay, RequestForm, DiscussionCards } from "@/lib/components";
 
 export default function Hulp() {
 
@@ -12,9 +12,7 @@ export default function Hulp() {
             </AuthPopup>
           </PopupOverlay>
 
-        <DiscussionCard />
-        <DiscussionCard />
-        <DiscussionCard />
+        <DiscussionCards />
     </main>
   )
 }

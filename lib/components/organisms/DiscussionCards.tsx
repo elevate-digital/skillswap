@@ -1,14 +1,17 @@
 "use client";
 
-import React from 'react';
-import { DiscussionCard } from "@/lib/components";
+import { DiscussionCard, useSkills } from "@/lib/components";
 
 export function DiscussionCards() {
-    return (
-        <ul className='list-none flex flex-col gap-4'>
-            <li>
-               <DiscussionCard /> 
-            </li>
-        </ul>
-    )
+  const { skills } = useSkills();
+
+  return (
+    <ul className="list-none flex flex-col gap-4">
+      {skills.map((skill) => (
+        <li key={skill.id}>
+          <DiscussionCard item={skill} />
+        </li>
+      ))}
+    </ul>
+  );
 }

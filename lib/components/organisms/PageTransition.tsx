@@ -12,37 +12,11 @@ interface PageTransitionProps {
   children?: ReactNode;
 }
 
-// Animatie varianten voor de pagina overgang
-const pageVariants = {
-  initial: {
-    opacity: 0,
-    y: 24,
-  },
-  animate: {
-    opacity: 1,
-    y: 0,
-  },
-  exit: {
-    opacity: 0,
-    y: 24,
-  },
-};
-
-const pageTransition = {
-  y: { 
-    duration: 0.25, 
-    ease: [0.22, 1, 0.36, 1] as const },
-  opacity: { 
-    delay: 0.2, 
-    duration: 0.2, 
-    ease: "easeOut" as const },
-};
-
 // View Page transition functie
 export function PageTransition({ children }: PageTransitionProps) {
   const pathname = usePathname(); // Huidige url pad ophalen  
   const [loading, setLoading] = useState(true); // Checked of de pagina aan het laden is
-  const lottieRef = useRef<AnimationItem | null>(null); // Lottie animatie referentie
+  const lottieRef = useRef<AnimationItem | null>(null); // Voor het opslaan van de Lottie animatie
   const loaderPhaseRef = useRef<"forward" | "reverse">("forward"); // Houdt bij of de loader vooruit of achteruit speelt
 
   // Detecteer reduced motion
@@ -52,7 +26,7 @@ export function PageTransition({ children }: PageTransitionProps) {
   // Pas transition aan bij reduced motion
   const effectiveTransition = prefersReducedMotion
     ? { y: { duration: 0 }, opacity: { duration: 0 } }
-    : pageTransition;
+    : { y: { duration: 0.25, ease: [0.22, 1, 0.36, 1] as const }, opacity: { delay: 0.2, duration: 0.2, ease: "easeOut" as const },};
 
   useEffect(() => {
     setLoading(true); // Zodra het pad veranderd laadt de pagina
@@ -81,7 +55,7 @@ export function PageTransition({ children }: PageTransitionProps) {
             <Lottie ref={lottieRef} animationData={skillswapLoader} play loop={false} speed={1.2} direction={1} segments={[15, 60]} onComplete={handleLottieComplete} style={{ width: 400, height: 400 }} />
           </motion.div>
         )}
-        <motion.div key={pathname} variants={pageVariants} initial="initial" animate={loading ? "initial" : "animate"} exit="exit" transition={effectiveTransition} className="page-transition-content">
+        <motion.div key={pathname} variants={{ initial: { opacity: 0, y: 24 }, animate: { opacity: 1, y: 0 }, exit: { opacity: 0, y: 24 }, }} initial="initial" animate={loading ? "initial" : "animate"} exit="exit" transition={effectiveTransition} className="page-transition-content">
           {children}
         </motion.div>
       </AnimatePresence>

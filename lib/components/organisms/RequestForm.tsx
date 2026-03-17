@@ -2,14 +2,16 @@
 
 import axios from "axios"; 
 import { useState } from "react";
-import { useAuth, TextField, TagsField, Button, LinkButton } from "@/lib/components";
+import { useAuth, useSkills, TextField, TagsField, Button, LinkButton } from "@/lib/components";
 
 export function RequestForm() {
     const [tags, setTags] = useState<string[]>([]);
     const [form, setForm] = useState({ title: "", description: "", type: "REQUEST" });
 
     // Form status ophalen uit useAuth
-    const { user, token, formStatus, formError, setFormStatus, setFormError, resetFormState } = useAuth();
+    const { user, token } = useAuth();
+    const { addSkill, SkillFormStatus, SkillFormError, setSkillFormStatus, setSkillFormError } = useSkills();
+
 
     // Update de form state zodra een inputveld verandert
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -20,19 +22,19 @@ export function RequestForm() {
     // Verwerkt het formulier bij het indienen
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault(); // Voorkomt dat de pagina herlaadt
-        setFormStatus("loading"); // Zet status op loading
-        setFormError(null); // Reset eventuele eerdere foutmelding
+        setSkillFormStatus("loading"); // Zet status op loading
+        setSkillFormError(null); // Reset eventuele eerdere foutmelding
 
         // Controleer of de gebruiker is ingelogd voordat je de API-aanroep doet
         if (!user || !token) {
-            setFormError("Je moet ingelogd zijn om een skill toe te voegen.");
-            setFormStatus("error");
+            setSkillFormError("Je moet ingelogd zijn om een skill toe te voegen.");
+            setSkillFormStatus("error");
             return;
         }
 
         // API-aanroep om de skill toe te voegen
         try {
-            await axios.post(
+            const response = await axios.post(
                 "/api/skill",
                 { ...form, tags },
                 {
@@ -43,22 +45,23 @@ export function RequestForm() {
                 }
             );
 
+            addSkill(response.data);
             // Toon de success state als het aanmaken successvol is gelukt
-            setFormStatus("success");
+            setSkillFormStatus("success");
 
         // Toon anders een foutmelding (error state)
         } catch (err) {
             if (axios.isAxiosError(err)) {
-                setFormError(err.response?.data?.message ?? err.message);
+                setSkillFormError(err.response?.data?.message ?? err.message);
             } else {
-                setFormError("Onbekende fout");
+                setSkillFormError("Onbekende fout");
             }
-            setFormStatus("error");
+            setSkillFormStatus("error");
         }
     };
 
     // Success state
-    if (formStatus === "success") {
+    if (SkillFormStatus === "success") {
         return (
             <>
                 <section className="flex flex-col gap-5 items-center bg-[#fff] px-[2em] py-[3em] rounded-[12px]">
@@ -74,8 +77,8 @@ export function RequestForm() {
                     <div className="flex-1 h-px bg-gray-300" />
                 </div>
 
-                <Button variant="secondary" onClick={() => { resetFormState(); setForm({ title: "", description: "", type: "REQUEST" }); setTags([]); }}>
-                    Nieuwe skill toevoegen
+               <Button variant="secondary" onClick={() => { setForm({ title: "", description: "", type: "REQUEST" }); setTags([]); setSkillFormStatus("idle"); setSkillFormError(null); }}>
+                    Nieuwe vraag toevoegen
                 </Button>
             </>
         );
@@ -88,13 +91,13 @@ export function RequestForm() {
             <TextField name="description" label="Beschrijving" value={form.description} onChange={handleChange} placeholder="Beschrijf waar je hulp bij nodig hebt" />
             <TagsField value={tags} onChange={setTags} />
 
-            {formError && <p className="!text-red-600">{formError}</p>}
+            {SkillFormError && <p className="!text-red-600">{SkillFormError}</p>}
 
             <div className="h-[1px] bg-[#CBCBCB] w-full mt-3"></div>
 
             <div className="flex items-center gap-2 justify-end pt-3">
                 <LinkButton variant="secondary">Annuleren</LinkButton>
-                <Button type="submit" variant="primary">Skill toevoegen</Button>
+                <Button type="submit" variant="primary">Vraag toevoegen</Button>
             </div>
         </form>
     );

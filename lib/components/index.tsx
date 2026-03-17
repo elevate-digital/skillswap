@@ -20,6 +20,7 @@ export { TextField } from "./molecules/TextField";
 export { PasswordField } from "./molecules/PasswordField";
 export { TagsField } from "./molecules/TagsField";
 export { Providers } from "./molecules/Providers";
+export type { SkillItem, UserType, TagType } from "./molecules/SkillItem";
 
 // Organisms
 export { Container } from "./organisms/Container";
@@ -30,5 +31,6 @@ export { OfferForm } from "./organisms/OfferForm";
 export { RequestForm } from "./organisms/RequestForm";
 export { RegisterForm } from "./organisms/RegisterForm";
 export { AuthProvider, useAuth } from "./organisms/useAuth";
+export { SkillsProvider, useSkills } from "./organisms/useSkill";
 export { SplashScreen } from "./organisms/SplashScreen";
 export { PageTransition } from "./organisms/PageTransition";

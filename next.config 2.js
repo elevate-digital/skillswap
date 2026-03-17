@@ -26,6 +26,10 @@ const nextConfig = {
         source: "/api/skill",
         destination: "https://skillswap-api-yw06.onrender.com/skill",
       },
+      {
+        source: "/api/skill/:id",
+        destination: "https://skillswap-api-yw06.onrender.com/skill/:id",
+      },
     ];
   },
 };

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {
   return (
-    <html lang="en" className="no-js">
+    <html lang="en" className="js">
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -33,6 +33,7 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
           <PageTransition>
             <Container>
               <Header />
+              
               {children}
               <AddButton />
             </Container>

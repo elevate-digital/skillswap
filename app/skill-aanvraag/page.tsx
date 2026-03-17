@@ -1,6 +1,6 @@
 'use client';
 
-import { AuthPopup, PopupOverlay, OfferForm, DiscussionCard } from "@/lib/components";
+import { AuthPopup, PopupOverlay, OfferForm, DiscussionCards } from "@/lib/components";
 
 export default function Skill() {
   return ( 
@@ -11,9 +11,7 @@ export default function Skill() {
             </AuthPopup>
           </PopupOverlay>
 
-        <DiscussionCard />
-        <DiscussionCard />
-        <DiscussionCard />
+        <DiscussionCards />
     </main>
   )
 }

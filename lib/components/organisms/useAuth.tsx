@@ -18,13 +18,6 @@ type AuthContextType = {
     logout: () => void;
     setAuthStatus: (status: "idle" | "loading" | "authenticated" | "error") => void;
     setAuthError: (error: string | null) => void;
-
-    // Formulier state
-    formStatus: "idle" | "loading" | "success" | "error";
-    formError: string | null;
-    setFormStatus: (status: "idle" | "loading" | "success" | "error") => void;
-    setFormError: (error: string | null) => void;
-    resetFormState: () => void;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -86,7 +79,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     };
 
     return (
-        <AuthContext.Provider value={{ user, token, authStatus, authError, login, logout, setAuthStatus, setAuthError, formStatus, formError, setFormStatus, setFormError, resetFormState }}>
+        <AuthContext.Provider value={{ user, token, authStatus, authError, login, logout, setAuthStatus, setAuthError }}>
             {children}
         </AuthContext.Provider>
     );

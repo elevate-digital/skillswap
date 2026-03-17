@@ -1,6 +1,6 @@
 'use client'
 
-import { useAuth, Switch, PopupHeader } from "@/lib/components";
+import { useAuth, useSkills, Switch, PopupHeader } from "@/lib/components";
 import { PlusIcon } from "@phosphor-icons/react";
 
 interface PopupProps {
@@ -13,9 +13,10 @@ interface PopupProps {
 }
 
 export function AuthPopup({ title, description, icon, children, showSwitch, showHeader }: PopupProps) {
-  const { user, authStatus, formStatus } = useAuth();
+  const { user, authStatus } = useAuth();
+  const { SkillFormStatus } = useSkills();
 
-  if (authStatus === "loading" || formStatus === "loading") {
+  if (authStatus === "loading" || SkillFormStatus === "loading") {
     return (
       <section className="px-[1.5em] py-[3em] flex flex-col gap-3 w-[90%] max-w-[500px] rounded-[var(--border-radius-md)] bg-[var(--primary-bg-color)] items-center">
         <p className="text-blue-600 animate-pulse">Bezig met laden…</p>
@@ -24,7 +25,7 @@ export function AuthPopup({ title, description, icon, children, showSwitch, show
     );
   }
 
-  const shouldShowHeader = (showHeader ?? !user) && formStatus !== "success";
+  const shouldShowHeader = (showHeader ?? !user) && SkillFormStatus !== "success";
   const shouldShowSwitch = showSwitch ?? !user;
 
   return (

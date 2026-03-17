@@ -1,7 +1,13 @@
 "use client";
 
-import { AuthProvider } from "@/lib/components";
+import { AuthProvider, SkillsProvider } from "@/lib/components";
 
 export function Providers({ children }: { children: React.ReactNode }) {
-  return <AuthProvider>{children}</AuthProvider>;
+  return  (
+  <AuthProvider>
+    <SkillsProvider>
+      {children}
+    </SkillsProvider>
+  </AuthProvider>
+  );
 }
