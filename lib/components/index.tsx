@@ -20,6 +20,7 @@ export { TextField } from "./molecules/TextField";
 export { PasswordField } from "./molecules/PasswordField";
 export { TagsField } from "./molecules/TagsField";
 export { Providers } from "./molecules/Providers";
+export { SkillForm } from "./molecules/SkillForm";
 
 // Organisms
 export { Container } from "./organisms/Container";

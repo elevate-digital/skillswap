@@ -3,7 +3,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Input, Button } from "@/lib/components";
-import { useAuth, TagType } from "@/lib/components";
+import { TagType } from "@/lib/components";
 
 // Props voor de TagsField component
 type TagsFieldProps = {
@@ -14,8 +14,6 @@ type TagsFieldProps = {
 export function TagsField({ value, onChange, ...props }: TagsFieldProps) {
   const [input, setInput] = useState("");
   const [popularTags, setPopularTags] = useState<TagType[]>([]);
-
-  const { token } = useAuth();
 
   // Populaire tags ophalen
   useEffect(() => {
@@ -40,31 +38,12 @@ export function TagsField({ value, onChange, ...props }: TagsFieldProps) {
   const canAdd = (tag: string) =>
     tag && !value.includes(tag) && value.length < 5;
 
-  // Tag aanmaken of ophalen
-  const createTag = async (tag: string) => {
-    try {
-      const res = await axios.post(
-        "/api/tag/find-or-create",
-        { title: tag },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      onChange([...value, res.data.title]);
-    } catch (error) {
-      console.error("Fout bij toevoegen tag:", error);
-    }
-  };
-
   // Tag toevoegen via input
-  const addTag = async () => {
+  const addTag = () => {
     const trimmed = input.trim();
     if (!canAdd(trimmed)) return;
 
-    await createTag(trimmed);
+    onChange([...value, trimmed]);
     setInput("");
   };
 
@@ -74,9 +53,9 @@ export function TagsField({ value, onChange, ...props }: TagsFieldProps) {
   };
 
   // Tag toevoegen via populaire tags
-  const addTagFromPopular = async (tag: string) => {
+  const addTagFromPopular = (tag: string) => {
     if (!canAdd(tag)) return;
-    await createTag(tag);
+    onChange([...value, tag]);
   };
 
   return (
