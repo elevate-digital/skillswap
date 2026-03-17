@@ -98,7 +98,7 @@ export function RequestForm() {
 
             <div className="flex items-center gap-2 justify-end pt-3">
                 <LinkButton variant="secondary">Annuleren</LinkButton>
-                <Button type="submit" variant="primary" icon={PlusCircleIcon}>Vraag toevoegen</Button>
+                <Button type="submit" variant="primary" icon={PlusCircleIcon} disabled={SkillFormStatus === "loading"}>Vraag toevoegen</Button>
             </div>
         </form>
     );
