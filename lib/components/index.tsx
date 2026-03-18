@@ -35,6 +35,7 @@ export { AuthProvider, useAuth } from "./organisms/useAuth";
 export { SkillsProvider, useSkills } from "./organisms/useSkill";
 export { SplashScreen } from "./organisms/SplashScreen";
 export { PageTransition } from "./organisms/PageTransition";
+export { ResultPanel } from "./organisms/ResultPanel";
 
 // Types
 export type { TagType } from "./types/TagType"
