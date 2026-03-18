@@ -1,5 +1,6 @@
 'use client';
 
+import { Suspense } from "react";
 import { AuthPopup, PopupOverlay, RequestForm, DiscussionCards, Switch, useSkills } from "@/lib/components";
 
 export default function Hulp() {
@@ -14,13 +15,15 @@ export default function Hulp() {
         </AuthPopup>
       </PopupOverlay>
 
-      <div className="w-[100%] md:w-[26em] self-baseline">
-        <Switch
-          param="type"
-          options={["OFFER", "REQUEST"]}
-          labels={[`Skills (${offerCount})`, `Hulpvragen (${requestCount})`]}
-        /> 
-      </div>
+      <Suspense fallback={null}>
+        <div className="w-[100%] md:w-[26em] self-baseline">
+          <Switch
+            param="type"
+            options={["OFFER", "REQUEST"]}
+            labels={[`Skills (${offerCount})`, `Hulpvragen (${requestCount})`]}
+          /> 
+        </div>
+      </Suspense>
 
       <DiscussionCards />
     </main>
