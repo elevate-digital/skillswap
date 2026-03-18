@@ -1,10 +1,19 @@
 "use client";
 
-import React from 'react';
 import { StarIcon } from "@phosphor-icons/react";
 
-export function IconBg() {
-    return (
-        <StarIcon weight="regular" className="bg-[var(--third-highlight-color)] rounded-[var(--border-radius-md)] p-[10px]" width={45} height={45} />
-    )
+type IconBgProps = {
+  icon?: React.ComponentType<IconProps>;
+  bg?: string;
+  size?: number;
+  padding?: number;
+  color?: string;
+};
+
+export function IconBg({ icon: Icon = StarIcon, bg = "var(--third-highlight-color)", padding = 10, color = "var(--primary-text-color)", }: IconBgProps ) {
+  return (
+    <Icon weight="regular" width={45} height={45} className="rounded-[var(--border-radius-md)]"
+      style={{ backgroundColor: bg, padding: padding, color: color, }}
+    />
+  );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { ClockIcon, ChatCircleIcon, CalendarIcon } from "@phosphor-icons/react";
+import { ClockIcon, ChatCircleIcon, CalendarIcon, QuestionIcon, StarIcon } from "@phosphor-icons/react";
 import { Tag, ProfilePicture, IconBg, SkillType, useAuth, useSkills } from "@/lib/components";
 
 export function DiscussionCard({ item }: { item: SkillType }) {
@@ -11,11 +11,14 @@ export function DiscussionCard({ item }: { item: SkillType }) {
   const isOwner = user?.email === item.user.email;
 
   return (
-    <article className="flex flex-col gap-[1em] items-start bg-[var(--third-bg-color)] p-[25px] md:p-[40px] rounded-[var(--border-radius-md)] border-l-10 border-l-[var(--secondary-bg-color)]">
+    <article className="flex flex-col gap-[1.3em] items-start bg-[var(--third-bg-color)] p-[25px] md:p-[40px] rounded-[var(--border-radius-md)] border-l-10 border-l-[var(--secondary-bg-color)]">
       
       <section className="flex gap-3 flex-col-reverse md:flex-row items-baseline md:items-center justify-between w-full">
         <h1 className="flex items-center gap-5 !text-[18px] md:!text-[24px]">
-          <IconBg />
+          <IconBg 
+            icon={item.type === "OFFER" ? StarIcon : QuestionIcon}
+            bg={item.type === "OFFER" ? "var(--third-highlight-color)" : "#F3EFFE"}
+          />
           {item.title}
         </h1>
 
