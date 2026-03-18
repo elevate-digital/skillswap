@@ -33,7 +33,7 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
           <PageTransition>
             <Container>
               <Header />
-              
+
               {children}
               <AddButton />
             </Container>

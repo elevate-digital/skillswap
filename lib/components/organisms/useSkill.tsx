@@ -59,7 +59,7 @@ export function SkillsProvider({ children }: { children: React.ReactNode }) {
         { completed: !completed },
         {
           headers: {
-            Authorization: `Bearer ${token}`, 
+            Authorization: `Bearer ${token}`, // ← verplicht voor protected routes
           },
         }
       );

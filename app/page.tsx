@@ -1,7 +1,7 @@
 'use client';
 
 import { Suspense } from "react";
-import { DiscussionCards, Switch, useSkills } from "@/lib/components";
+import { DiscussionCards, Switch, useSkills, ResultPanel } from "@/lib/components";
 
 export default function Home() {
 
@@ -11,6 +11,7 @@ export default function Home() {
     <main id="inhoud" className="py-[1em] md:py-[2em] flex flex-col gap-5">
 
       <Suspense fallback={null}>
+        <ResultPanel />
         <div className="w-[100%] md:w-[26em] self-baseline">
           <Switch
             param="type"
