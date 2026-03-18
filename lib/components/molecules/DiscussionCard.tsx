@@ -1,10 +1,14 @@
 "use client";
 
 import { ClockIcon, ChatCircleIcon, CalendarIcon } from "@phosphor-icons/react";
-import { Tag, ProfilePicture, IconBg, SkillType } from "@/lib/components";
+import { Tag, ProfilePicture, IconBg, SkillType, useAuth, useSkills } from "@/lib/components";
 
 export function DiscussionCard({ item }: { item: SkillType }) {
-  const statusLabel = item.completed ? "Gesloten" : "Open";
+  const { user } = useAuth();
+  const { toggleSkillStatus } = useSkills();
+
+  // Check of de ingelogde gebruiker de eigenaar is van de skill
+  const isOwner = user?.email === item.user.email;
 
   return (
     <article className="flex flex-col gap-[1em] items-start bg-[var(--third-bg-color)] p-[25px] md:p-[40px] rounded-[var(--border-radius-md)] border-l-10 border-l-[var(--secondary-bg-color)]">
@@ -15,9 +19,15 @@ export function DiscussionCard({ item }: { item: SkillType }) {
           {item.title}
         </h1>
 
-        <span className="flex items-center gap-1 bg-[var(--succes-color)] text-[var(--third-bg-color)] px-[12px] rounded-[var(--border-radius-md)]">
+        <span className={`flex items-center gap-1 px-[12px] rounded-[var(--border-radius-md)]
+            ${item.completed
+              ? "bg-[var(--primary-highlight-color)] text-[var(--secondary-text-color)]"
+              : "bg-[var(--succes-color)] text-[var(--third-bg-color)]"
+            }`}>
           <ClockIcon />
-          <p className="!text-[var(--secondary-text-color)]">{statusLabel}</p>
+          <p className="!text-[var(--secondary-text-color)]">
+            {item.completed ? "Gesloten" : "Open"}
+          </p>
         </span>
       </section>
 
@@ -52,16 +62,14 @@ export function DiscussionCard({ item }: { item: SkillType }) {
         </span>
       </section>
 
-    <label className="flex items-center gap-2 font-[var(--font-weight-m)] text-[16px] text-[var(--primary-text-color)] pt-[1em]">
-        <input
-            type="checkbox"
-            defaultChecked={item.completed}
-            className="peer appearance-none w-12 h-6 bg-gray-300 rounded-full relative cursor-pointer checked:bg-[var(--secondary-bg-color)] before:content-[''] before:absolute before:top-1 before:left-1 before:w-4 before:h-4 before:bg-white before:rounded-full before:shadow-md checked:before:translate-x-6 before:transition-transform before:duration-300"
-        />
-        <span className="peer-checked:hidden">open</span>
-        <span className="hidden peer-checked:inline">gesloten</span>
-    </label>
-
+      {/* Toon de switcher alleen als het van de desbtreffender ingelogde persoon is */}
+      {isOwner && (
+        <label className="flex items-center gap-2 font-[var(--font-weight-m)] text-[16px] text-[var(--primary-text-color)] pt-[1em]">
+            <input type="checkbox" checked={item.completed} onChange={() => toggleSkillStatus(item.id, item.completed)} className="peer appearance-none w-12 h-6 bg-gray-300 rounded-full relative cursor-pointer checked:bg-[var(--secondary-bg-color)] before:content-[''] before:absolute before:top-1 before:left-1 before:w-4 before:h-4 before:bg-white before:rounded-full before:shadow-md checked:before:translate-x-6 before:transition-transform before:duration-300" />
+            <span className="peer-checked:hidden">open</span>
+            <span className="hidden peer-checked:inline">gesloten</span>
+        </label>
+      )}
     </article>
   );
 }

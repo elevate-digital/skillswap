@@ -1,6 +1,7 @@
 'use client';
 import { createContext, useContext, useState, useEffect } from "react";
 import type { SkillType } from "@/lib/components";
+import { useAuth } from "@/lib/components";
 
 import axios from "axios";
 
@@ -8,6 +9,7 @@ type SkillsContextType = {
   skills: SkillType[];
   addSkill: (skill: SkillType) => void;
   fetchSkills: () => void;
+  toggleSkillStatus: (id: number, completed: boolean) => void;
 
   // Skill Form state
   SkillFormStatus: "idle" | "loading" | "success" | "error";
@@ -23,6 +25,8 @@ export function SkillsProvider({ children }: { children: React.ReactNode }) {
   const [SkillFormStatus, setSkillFormStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [SkillFormError, setSkillFormError] = useState<string | null>(null);
 
+  const { token } = useAuth();
+
   const fetchSkills = async () => {
     try {
       const res = await axios.get("/api/skill");
@@ -36,12 +40,41 @@ export function SkillsProvider({ children }: { children: React.ReactNode }) {
     setSkills(prev => [skill, ...prev]);
   };
 
+  const toggleSkillStatus = async (id: number, completed: boolean) => {
+    try {
+      setSkillFormStatus("loading");
+
+      await axios.put(
+        `/api/skill/${id}`,
+        { completed: !completed },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // ← verplicht voor protected routes
+          },
+        }
+      );
+
+      // Update lokale state
+      setSkills(prev =>
+        prev.map(skill =>
+          skill.id === id ? { ...skill, completed: !completed } : skill
+        )
+      );
+
+      setSkillFormStatus("success");
+    } catch (err) {
+      console.error("Kon status niet updaten", err);
+      setSkillFormStatus("error");
+      setSkillFormError("Kon status niet updaten");
+    }
+  };
+
   useEffect(() => {
     fetchSkills();
   }, []);
 
   return (
-    <SkillsContext.Provider value={{ skills, addSkill, fetchSkills, SkillFormStatus, SkillFormError, setSkillFormStatus, setSkillFormError }}>
+    <SkillsContext.Provider value={{ skills, addSkill, toggleSkillStatus, fetchSkills, SkillFormStatus, SkillFormError, setSkillFormStatus, setSkillFormError }}>
       {children}
     </SkillsContext.Provider>
   );

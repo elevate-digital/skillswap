@@ -5,6 +5,7 @@ import { createContext, useContext, useState, useEffect } from 'react';
 type User = {
     name: string;
     email: string;
+    id: string;
 };
 
 type AuthContextType = {
@@ -29,16 +30,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     // Authenticatie State
     const [authStatus, setAuthStatus] = useState<"idle" | "loading" | "authenticated" | "error">("idle");
     const [authError, setAuthError] = useState<string | null>(null);
-
-    // Formulier state
-    const [formStatus, setFormStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-    const [formError, setFormError] = useState<string | null>(null);
-
-    // Functie om formulier state te resetten (Skill en Hulp formulier)
-    const resetFormState = () => {
-        setFormStatus("idle");
-        setFormError(null);
-    };
 
     // Controleer bij het laden van de app of er al een gebruiker en token in localStorage staan
     useEffect(() => {
