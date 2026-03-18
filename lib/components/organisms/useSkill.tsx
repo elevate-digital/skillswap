@@ -16,6 +16,11 @@ type SkillsContextType = {
   SkillFormError: string | null;
   setSkillFormStatus: (status: any) => void;
   setSkillFormError: (error: string | null) => void;
+
+  offerCount: number;
+  requestCount: number;
+  openCount: number;
+  completedCount: number;
 };
 
 const SkillsContext = createContext<SkillsContextType | undefined>(undefined);
@@ -24,6 +29,11 @@ export function SkillsProvider({ children }: { children: React.ReactNode }) {
   const [skills, setSkills] = useState<SkillType[]>([]);
   const [SkillFormStatus, setSkillFormStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [SkillFormError, setSkillFormError] = useState<string | null>(null);
+
+  const offerCount = skills.filter(s => s.type === "OFFER").length;
+  const requestCount = skills.filter(s => s.type === "REQUEST").length;
+  const openCount = skills.filter(s => !s.completed).length;
+  const completedCount = skills.filter(s => s.completed).length;
 
   const { token } = useAuth();
 
@@ -49,7 +59,7 @@ export function SkillsProvider({ children }: { children: React.ReactNode }) {
         { completed: !completed },
         {
           headers: {
-            Authorization: `Bearer ${token}`, // ← verplicht voor protected routes
+            Authorization: `Bearer ${token}`, 
           },
         }
       );
@@ -74,7 +84,19 @@ export function SkillsProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <SkillsContext.Provider value={{ skills, addSkill, toggleSkillStatus, fetchSkills, SkillFormStatus, SkillFormError, setSkillFormStatus, setSkillFormError }}>
+    <SkillsContext.Provider value={{ 
+        skills, 
+        addSkill, 
+        toggleSkillStatus, 
+        fetchSkills, 
+        SkillFormStatus, 
+        SkillFormError, 
+        setSkillFormStatus, 
+        setSkillFormError, 
+        offerCount,
+        requestCount,
+        openCount,
+        completedCount, }}>
       {children}
     </SkillsContext.Provider>
   );

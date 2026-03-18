@@ -39,7 +39,7 @@ export function AuthPopup({ title, description, icon, children, showSwitch, show
         />
       )}
 
-      {shouldShowSwitch && <Switch />}
+      {shouldShowSwitch && <Switch param="mode" options={["login", "register"]} labels={["Inloggen", "Registreren"]} />}
 
       {children}
     </section>

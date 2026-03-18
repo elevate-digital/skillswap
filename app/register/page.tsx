@@ -4,11 +4,13 @@ export const dynamic = "force-dynamic";
 
 import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { RegisterForm, DiscussionCards, LoginForm, PopupOverlay, AuthPopup } from "@/lib/components";
+import { RegisterForm, DiscussionCards, LoginForm, PopupOverlay, AuthPopup, Switch, useSkills } from "@/lib/components";
 
 function RegisterContent() {
   const params = useSearchParams();
   const mode = params.get("mode") === "register" ? "register" : "login";
+
+  const { offerCount, requestCount } = useSkills();
 
   return (
     <>
@@ -22,6 +24,14 @@ function RegisterContent() {
         </AuthPopup>
       </PopupOverlay>
 
+      <div className="w-[100%] md:w-[26em] self-baseline">
+        <Switch
+          param="type"
+          options={["OFFER", "REQUEST"]}
+          labels={[`Skills (${offerCount})`, `Hulpvragen (${requestCount})`]}
+        /> 
+      </div>
+
       <DiscussionCards />
     </>
   );
@@ -29,7 +39,7 @@ function RegisterContent() {
 
 export default function Login() {
   return (
-    <main id="inhoud" className="py-[1em] md:py-[2em]">
+    <main id="inhoud" className="py-[1em] md:py-[2em] flex flex-col gap-5">
       <Suspense fallback={null}>
         <RegisterContent />
       </Suspense>
