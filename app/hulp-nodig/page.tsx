@@ -23,9 +23,9 @@ export default function Hulp() {
             labels={[`Skills (${offerCount})`, `Hulpvragen (${requestCount})`]}
           /> 
         </div>
+        
+        <DiscussionCards />
       </Suspense>
-
-      <DiscussionCards />
     </main>
   )
 }
