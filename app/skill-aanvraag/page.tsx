@@ -5,16 +5,20 @@ import { AuthPopup, PopupOverlay, OfferForm, DiscussionCards, Switch, useSkills 
 
 export default function Skill() {
 
+  // Haal het aantal offers en requests op uit de useSkills hook
   const { offerCount, requestCount } = useSkills();
 
   return ( 
     <main id="inhoud" className="py-[1em] md:py-[2em] flex flex-col gap-5">
+
+      {/* Overlay met popup + request formulier */}
       <PopupOverlay>
         <AuthPopup title="Biedt je skill aan" description="Deel je kennis met andere studenten en junior developers." showHeader={true} showSwitch={false}>  
             <OfferForm />
         </AuthPopup>
       </PopupOverlay>
 
+      {/* Render pas de volgende elementen als tot search params (useSearchParams) beschikbaar is */}
       <Suspense fallback={null}>
         <div className="w-[100%] md:w-[26em] self-baseline">
           <Switch

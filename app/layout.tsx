@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./global.css";
 import React from "react";
-import { Header, Container, AddButton, Providers, SplashScreen, PageTransition } from "@/lib/components";
+import { Header, Container, MobileHeader, Providers, SplashScreen, PageTransition } from "@/lib/components";
 
 export const metadata: Metadata = {
   title: "Skill Swap",
@@ -35,7 +35,7 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
               <Header />
 
               {children}
-              <AddButton />
+              <MobileHeader />
             </Container>
           </PageTransition>
 

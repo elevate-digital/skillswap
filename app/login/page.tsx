@@ -7,9 +7,12 @@ import { useSearchParams } from "next/navigation";
 import { RegisterForm, DiscussionCards, LoginForm, PopupOverlay, AuthPopup, Switch, useSkills } from "@/lib/components";
 
 function LoginContent() {
+
+  // Bepaal op basis van de search params of we in login of register modus zitten
   const params = useSearchParams();
   const mode = params.get("mode") === "register" ? "register" : "login";
 
+  // Haal het aantal offers en requests op uit de useSkills hook
   const { offerCount, requestCount } = useSkills();
 
   return (
