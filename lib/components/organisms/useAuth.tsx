@@ -24,10 +24,9 @@ type AuthContextType = {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
+    // State voor gebruiker, token, authenticatie status en eventuele fouten
     const [user, setUser] = useState<User | null>(null);
     const [token, setToken] = useState<string | null>(null);
-
-    // Authenticatie State
     const [authStatus, setAuthStatus] = useState<"idle" | "loading" | "authenticated" | "error">("idle");
     const [authError, setAuthError] = useState<string | null>(null);
 
@@ -47,12 +46,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     // Functie om in te loggen: sla gebruiker en token op in state en localStorage
     const login = (userData: User, token: string) => {
+        // Sla de gebruiker en token op in state
         setUser(userData);
         setToken(token);
 
+        // Sla de gebruiker en token op in localStorage zodat ze behouden blijven bij het verversen van de pagina
         localStorage.setItem("user", JSON.stringify(userData));
         localStorage.setItem("token", token);
 
+        // Zet de authenticatie status op "authenticated" en reset eventuele fouten
         setAuthStatus("authenticated");
         setAuthError(null);
     };

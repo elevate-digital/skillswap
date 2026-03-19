@@ -1,5 +1,6 @@
 import React from "react";
 
+// Props voor de PopupHeader component
 interface PopupHeaderProps {
   title: string;
   description: string;

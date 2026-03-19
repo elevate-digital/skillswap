@@ -22,28 +22,35 @@ export function SkillForm({
     submitLabel: string;
     listLinkLabel: string;
 }) {
+
+    // State voor de form velden en tags
     const [tags, setTags] = useState<string[]>([]);
     const [form, setForm] = useState({ title: "", description: "", type });
 
+    // Haalt user info uit useAuth op en skill functies uit useSkills
     const { user, token } = useAuth();
     const { addSkill, SkillFormStatus, SkillFormError, setSkillFormStatus, setSkillFormError } = useSkills();
 
+    // Update de form state bij input veranderingen
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setForm(prev => ({ ...prev, [name]: value }));
     };
 
+    // Functie voor het verzenden van het formulier
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setSkillFormStatus("loading");
-        setSkillFormError(null);
+        e.preventDefault(); // Zorgt ervoor dat niet de hele pagina refreshed
+        setSkillFormStatus("loading"); // Zet de status op loading tijdens het verzenden
+        setSkillFormError(null); // Reset eventuele eerdere fouten
 
+        // Controleer of de gebruiker is ingelogd voordat je een skill toevoegt
         if (!user || !token) {
             setSkillFormError("Je moet ingelogd zijn om een skill toe te voegen.");
             setSkillFormStatus("error");
             return;
         }
 
+        // Verzend de skill data naar de API
         try {
             const response = await axios.post(
                 "/api/skill",
@@ -56,9 +63,10 @@ export function SkillForm({
                 }
             );
 
-            addSkill(response.data);
-            setSkillFormStatus("success");
+            addSkill(response.data); // Voeg de nieuwe skill toe aan de context
+            setSkillFormStatus("success"); 
 
+        // Laat de fout zien als het formulier niet verzonden kan worden
         } catch (err) {
             if (axios.isAxiosError(err)) {
                 setSkillFormError(err.response?.data?.message ?? err.message);
@@ -69,6 +77,7 @@ export function SkillForm({
         }
     };
 
+    // Als de skill succesvol verzonden is toon de succestate
     if (SkillFormStatus === "success") {
         return (
             <>
@@ -95,6 +104,7 @@ export function SkillForm({
     }
 
     return (
+        // Het standaardformulier voor het aanmaken van een skill
         <form onSubmit={handleSubmit} className="flex flex-col gap-3 login-form">
             <TextField name="title" label="Titel" value={form.title} onChange={handleChange} placeholder={titlePlaceholder} />
             <TextField name="description" label="Beschrijving" value={form.description} onChange={handleChange} placeholder={descriptionPlaceholder} />

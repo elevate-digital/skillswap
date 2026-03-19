@@ -1,5 +1,7 @@
+// Importeren van React en de types voor input elementen
 import { InputHTMLAttributes } from "react";
 
+// Props voor input component
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   label?: string;
   className?: string;

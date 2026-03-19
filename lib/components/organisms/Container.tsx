@@ -14,5 +14,3 @@ export function Container({ children }: ContainerProps) {
         </motion.main>
     )
 }
-
-//  animate={{ opacity:1 }} initial={{ opacity:0 }} transition={{ duration:1, delay: 1 }}

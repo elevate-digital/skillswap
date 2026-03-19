@@ -1,5 +1,6 @@
 "use client";
 
+// Props voor tag infp
 type TagProps = {
   title: string;
 };

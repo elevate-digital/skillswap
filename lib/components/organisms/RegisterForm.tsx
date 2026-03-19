@@ -45,8 +45,6 @@ export function RegisterForm() {
         }
       });
 
-      console.log("Login response:", loginResponse.data);
-
       login(loginResponse.data.user, loginResponse.data.token); // Sla de gebruiker en token op in LocalStorage
       setAuthStatus("authenticated");
 

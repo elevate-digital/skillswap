@@ -12,50 +12,61 @@ type TagsFieldProps = {
 };
 
 export function TagsField({ value, onChange, ...props }: TagsFieldProps) {
+
+  // State voor input waarde en populaire tags
   const [input, setInput] = useState("");
   const [popularTags, setPopularTags] = useState<TagType[]>([]);
 
   // Populaire tags ophalen
   useEffect(() => {
+
+    // Functie om tags op te halen uit API
     async function fetchTags() {
       try {
+
+        // Tags ophalen uit API
         const response = await axios.get<TagType[]>("/api/tag");
 
+        // Tags sorteren op aantal skills en de top 8 nemen
         const sorted = response.data
           .sort((a, b) => b._count.skills - a._count.skills)
-          .slice(0, 9);
+          .slice(0, 8);
 
+        // Populaire tags in state zetten
         setPopularTags(sorted);
+
+      // Zo niet? Error melding laten zien
       } catch (error) {
         console.error("Fout bij ophalen tags:", error);
       }
     }
 
+    // Tags ophalen zodra de pagina geladen is
     fetchTags();
   }, []);
 
   // Check of een tag toegevoegd mag worden
   const canAdd = (tag: string) =>
-    tag && !value.includes(tag) && value.length < 5;
+    tag && !value.includes(tag) && value.length < 5; // Max 5 tags, geen lege of dubbele tags
 
   // Tag toevoegen via input
   const addTag = () => {
-    const trimmed = input.trim();
-    if (!canAdd(trimmed)) return;
+    const trimmed = input.trim(); // Spaties aan het begin en einde verwijderen
+    if (!canAdd(trimmed)) return; // Checken of de tag toegevoegd mag worden
 
-    onChange([...value, trimmed]);
-    setInput("");
+    onChange([...value, trimmed]); // Nieuwe tag toevoegen aan de lijst
+    setInput(""); // Input veld leegmaken
   };
 
   // Tag verwijderen
   const removeTag = (tag: string) => {
-    onChange(value.filter((t) => t !== tag));
+    onChange(value.filter((t) => t !== tag)); // Alle tags behalve de verwijderde tag in de lijst houden
   };
 
   // Tag toevoegen via populaire tags
   const addTagFromPopular = (tag: string) => {
-    if (!canAdd(tag)) return;
-    onChange([...value, tag]);
+    if (!canAdd(tag)) return; // Checken of de tag toegevoegd mag worden
+    onChange([...value, tag]); // Nieuwe tag toevoegen aan de lijst
   };
 
   return (
@@ -64,6 +75,7 @@ export function TagsField({ value, onChange, ...props }: TagsFieldProps) {
 
       <div className="flex gap-2">
         <Input {...props} value={input} className="flex-1 min-w-0" onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => {
+            // Wanneer op Enter gedrukt wordt, tag toevoegen
             if (e.key === "Enter") {
               e.preventDefault();
               addTag();
@@ -84,10 +96,11 @@ export function TagsField({ value, onChange, ...props }: TagsFieldProps) {
         ))}
       </div>
 
-      {/* Populaire tags */}
+      {/* Alle populaire tags */}
       <div className="flex flex-col">
         <p>Populaire tags:</p>
         <ul className="flex flex-wrap gap-2 mt-2">
+          {/* Map met alle tags die getoond worden */}
           {popularTags.map((tag) => {
             const isSelected = value.includes(tag.title);
             return (

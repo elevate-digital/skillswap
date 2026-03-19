@@ -1,15 +1,14 @@
 // Atoms
 export { Button } from "./atoms/Button";
-export { AddButton } from "./atoms/AddButton";
 export { Tag } from "./atoms/Tag";
 export { IconBg } from "./atoms/IconBg";
-export { Icon } from "./atoms/Icon";
 export { LinkButton } from "./atoms/LinkButton";
 export { ProfilePicture } from "./atoms/ProfilePicture";
 
 // Molecules
 export { DiscussionCard } from "./molecules/DiscussionCard";
 export { Header } from "./molecules/Header";
+export { MobileHeader } from "./molecules/MobileHeader";
 export { PopupHeader } from "./molecules/PopupHeader";
 export { PopupOverlay } from "./molecules/PopupOverlay";
 export { Switch } from "./molecules/Switch";

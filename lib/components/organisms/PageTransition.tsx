@@ -48,7 +48,7 @@ export function PageTransition({ children }: PageTransitionProps) {
 
   return (
     <>
-      {/* AnimatePresence zorgt ervoor dat exit-animaties */}
+      {/* AnimatePresence zorgt ervoor dat exit animaties */}
       <AnimatePresence mode="sync">
         {loading && !prefersReducedMotion && (
           <motion.div key="loader" initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.25, ease: "easeOut" }} className="page-transition-loader fixed inset-0 z-10 flex items-center justify-center bg-[var(--primary-bg-color)]">

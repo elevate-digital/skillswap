@@ -13,6 +13,7 @@ export function SplashScreen() {
 
   // Eerst checken of de gebruiker al eens op de site is geweest (via localStorage) en alleen dan de splash tonen
   useEffect(() => {
+    // Variabele die wordt opgeslagen in de localStorage om bij te houden of de gebruiker al eerder op de site is geweest
     const hasVisited = localStorage.getItem("hasVisited");
 
     // Als de gebruiker nog niet eerder op de site is geweest, toon de splash en sla op dat ze nu wel hebben bezocht

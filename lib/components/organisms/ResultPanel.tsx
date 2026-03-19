@@ -4,6 +4,7 @@ import { Result, useSkills } from "@/lib/components";
 import { StarIcon, QuestionIcon, UsersIcon, ChartLineUpIcon } from "@phosphor-icons/react";
 
 export function ResultPanel() {
+  // Haal het aantal offers, requests, open en completed skills op uit de useSkills hook
   const { offerCount, requestCount, openCount, completedCount } = useSkills();
 
   return (

@@ -1,39 +1,32 @@
 'use client';
 
-import { useCallback } from "react";
 import { LinkButton, ProfilePicture, useAuth } from "@/lib/components";
 import { LogoFull } from "@/lib/assets/LogoFull";
 import { PlusCircleIcon, UserIcon } from "@phosphor-icons/react";
 
 export function Header() {
 
-    const { user } = useAuth();
+  // User ophalen uit de useAuth voor het checken of een gebruiker is ingelogd
+  const { user } = useAuth();
 
-    // Functie wordt maar één keer aangemaakt en blijft hetzelfde
-    const scrollToSection = useCallback((id: string) => {
-        const element = document.getElementById(id);
+  return (
+    <header className="flex justify-between items-center m-auto sticky top-0 bg-[var(--primary-bg-color)] py-[.5em] md:py-[1em] z-[1000]">
+      {/* Logo SkillSwap */}
+      <LogoFull />
 
-        // Check of het element bestaat
-        if (element) {
-            element.scrollIntoView({ behavior: "smooth" }); 
-            element.focus();
-        }
-    }, []);
+      {/* Navigatie met knoppen naar inlog + knoppen */}
+      <nav className="flex gap-2 w-[100%] justify-end">
+        {/* Wanneer een gebruiker niet ingelogd is toon dan 'Inloggen knop'  */}
+        {!user && (<a href="/login" className='flex items-center gap-1 self-center'><UserIcon />Inloggen</a>)}
 
-    return (
-        <header className="flex justify-between items-center m-auto sticky top-0 bg-[var(--primary-bg-color)] py-[.5em] md:py-[1em] z-[1000]">
-          <LogoFull />
+        {/* Wanneer een gebruiker ingelogd is toon dan 'Profile knop' */}
+        {user && (<a href="/login"><ProfilePicture name={user?.name || ""} /><span className="sr-only">Account beheren</span></a>)}
 
-          <nav className="flex gap-2 w-[100%] justify-end">
-            {!user && (<a href="/login" className='flex items-center gap-1 self-center'><UserIcon />Inloggen</a>)}
-            
-            <a href="/login"><ProfilePicture name={user?.name || ""} /><span className="sr-only">Bekijk account</span></a>
-
-            <div className='hidden md:flex gap-2'>
-              <LinkButton variant="primary" href="/skill-aanvraag" icon={PlusCircleIcon}>Skill aanbieden</LinkButton>
-              <LinkButton variant="secondary" href="/hulp-nodig" icon={PlusCircleIcon}>Hulp vragen</LinkButton>
-            </div>
-          </nav>
-        </header>
-    )
+        <div className='hidden md:flex gap-2'>
+          <LinkButton variant="primary" href="/skill-aanvraag" icon={PlusCircleIcon}>Skill aanbieden</LinkButton>
+          <LinkButton variant="secondary" href="/hulp-nodig" icon={PlusCircleIcon}>Hulp vragen</LinkButton>
+        </div>
+      </nav>
+    </header>
+  )
 }
