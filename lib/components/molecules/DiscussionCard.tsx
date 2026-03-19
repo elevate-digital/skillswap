@@ -11,13 +11,15 @@ export function DiscussionCard({ item }: { item: SkillType }) {
   const isOwner = user?.email === item.user.email;
 
   return (
-    <article className="flex flex-col gap-[1.3em] items-start bg-[var(--third-bg-color)] p-[25px] md:p-[40px] rounded-[var(--border-radius-md)] border-l-10 border-l-[var(--secondary-bg-color)]">
+    <article className={`flex flex-col gap-[1.3em] items-start bg-[var(--third-bg-color)] p-[25px] md:p-[40px] rounded-[var(--border-radius-md)] border-l-10
+      ${item.type === "OFFER" ? "border-l-[var(--secondary-bg-color)]" : "border-l-[#B0A4D0]"}
+    `}>
       
       <section className="flex gap-3 flex-col-reverse md:flex-row items-baseline md:items-center justify-between w-full">
         <h1 className="flex items-center gap-5 !text-[18px] md:!text-[24px]">
           <IconBg 
             icon={item.type === "OFFER" ? StarIcon : QuestionIcon}
-            bg={item.type === "OFFER" ? "var(--third-highlight-color)" : "#F3EFFE"}
+            bg={item.type === "OFFER" ? "#EBF2E1" : "#F3EFFE"}
           />
           {item.title}
         </h1>
