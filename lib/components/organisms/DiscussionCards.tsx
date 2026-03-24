@@ -3,48 +3,34 @@
 import { useSearchParams } from "next/navigation";
 import { DiscussionCard, useSkills } from "@/lib/components";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 export function DiscussionCards() {
-  // Bepaal op basis van de search params of we in offer of request modus zitten
   const params = useSearchParams();
   const type = params.get("type");
 
-  // Haal alle skills op uit de useSkills hook
   const { skills } = useSkills();
-
-  // Filter de skills op basis van het type (offer of request) als er een type is opgegeven in de search params
   const filtered = type ? skills.filter((s) => s.type === type) : skills;
 
-  const parentVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {  
-        staggerChildren: 0.2,
-      },
-    },
-  }
+  const [show, setShow] = useState(false);
 
-  const childVariants = {
-    hidden: { opacity: 0, y: 20 },
-    show: { 
-      opacity: 1, 
-      y: 0,
-      transition: {
-        type: "spring" as const,
-        stiffness: 120,
-        damping: 14,
-      },
-    },
-  }
+  useEffect(() => { 
+    const timer = setTimeout(() => { 
+      setShow(true); }, 1500); 
+      
+      return () => clearTimeout(timer); 
+    }, []);
+
+  if (!show) return null;
 
   return (
-    <motion.ul key={`${type}-${filtered.length}`} className="list-none flex flex-col gap-4" variants={parentVariants} initial="hidden" animate="show">
-      {filtered.map((skill) => (
-      <motion.li key={skill.id} variants={childVariants}>
-        <DiscussionCard item={skill} />
-      </motion.li>
-    ))}
-</motion.ul>
+    <motion.ul className="list-none flex flex-col gap-4" transition={{ delay: 250 }} animate={show ? "show" : "hidden"}>
+      {filtered.map((skill, index) => (
+        <motion.li key={skill.id} initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.1, }}>
+          <DiscussionCard item={skill} />
+        </motion.li>
+      ))}
+    </motion.ul>
   );
 }
