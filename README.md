@@ -37,12 +37,29 @@ SkillSwap is het platform dat studenten en junior developers helpt om kennis met
 
 ### Belangrijke features
 #### Splash Screen
+- De splash screen verschijnt alleen bij het eerste bezoek en verdwijnt automatisch zodra de app klaar is met laden.
+- Dankzij localStorage werkt de logica betrouwbaar en wordt de animatie nooit onnodig opnieuw getoond.
+- De interface blijft duidelijk doordat de splash soepel fade‑out wanneer de content beschikbaar is.
+- Met een Lottie animatie en subtiele overgang voelt de eerste indruk van de app vriendelijk en professioneel.
 
 https://github.com/user-attachments/assets/658692fb-4c5c-4112-8357-a986c2eca23d
 
-#### Multi page view transition
+#### Filter switch
 
-https://github.com/user-attachments/assets/a32ec420-7f04-4fbe-bcd1-ba9da3f1a404
+- De switch maakt het mogelijk om tussen twee weergaven te wisselen door de gekozen optie in de URL‑parameter op te slaan.
+- De component blijft volledig bruikbaar zonder JavaScript dankzij `<noscript>` fallback.
+- De interface gebruikt duidelijke labels en een state om te laten zien welke optie in de switch gekozen is.
+- Met animaties wordt ervoor gezorgd dat het switchen aangemaan is voor de gebruiker.
+
+https://github.com/user-attachments/assets/1b5473c8-5762-4a35-a679-04a84ac27ea0
+
+#### Stagger animatie
+- De cards verschijnen pas wanneer de data geladen is, zodat de interface nooit half leeg toont + er wordt dan ook een fallback weergegeven.
+- De animatie past zich automatisch aan voor gebruikers met `prefers reduced motion`.
+- Elke card fade subtiel in, waardoor de content rustig en duidelijk binnenkomt.
+- De stagger animatie zorgt voor goede perceived performance voor de gebruiker.
+
+https://github.com/user-attachments/assets/edd9de31-360f-429b-a8eb-f104d3cc12b5
 
 ## Kenmerken
 
