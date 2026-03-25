@@ -8,6 +8,7 @@ export { ProfilePicture } from "./atoms/ProfilePicture";
 // Molecules
 export { DiscussionCard } from "./molecules/DiscussionCard";
 export { Header } from "./molecules/Header";
+export { Footer } from "./molecules/Footer";
 export { MobileHeader } from "./molecules/MobileHeader";
 export { PopupHeader } from "./molecules/PopupHeader";
 export { PopupOverlay } from "./molecules/PopupOverlay";
