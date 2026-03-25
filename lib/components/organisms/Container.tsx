@@ -9,8 +9,8 @@ interface ContainerProps {
 
 export function Container({ children }: ContainerProps) {
     return (
-        <motion.main className="px-[5%] max-w-[1400px] m-auto">
+        <motion.div className="px-[5%] max-w-[1400px] m-auto">
            {children}
-        </motion.main>
+        </motion.div>
     )
 }
