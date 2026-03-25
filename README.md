@@ -4,12 +4,21 @@ SkillSwap is het platform dat studenten en junior developers helpt om kennis met
 
 **Doel:** Het uitwisselen van kennis voor beginnende frontend end devopers.
 
+### Team
+
+| Naam | Functie | Rol |
+| --- | --- | --- |
+| Amber Schalker | Stagiair Frontend Developer | Developer applicatie |
+| Remy Nijsten | Fullstack Developer (stagebeleider) | Opdrachtgever |
+
 ![hero-mockup-skillswap](https://github.com/user-attachments/assets/75d2c3d9-a592-43e0-90f2-c43e9d7e0df2)
 
 ## Inhoudsopgave
 
   * [Beschrijving](#beschrijving)
+  * [Kenmerken](#kenmerken)
   * [Installatie](#installatie)
+  * [Bronnen](#bronnen)
   * [Licentie](#licentie)
 
 ## Beschrijving
@@ -35,6 +44,57 @@ https://github.com/user-attachments/assets/658692fb-4c5c-4112-8357-a986c2eca23d
 
 https://github.com/user-attachments/assets/a32ec420-7f04-4fbe-bcd1-ba9da3f1a404
 
+## Kenmerken
+
+### Data ophalen
+
+- SkillSwap haalt alle data op via Axios.
+- De frontend maakt gebruik van Next.js‑rewrites, waardoor alle requests via /api/... lopen en automatisch worden doorgestuurd naar de externe API op Render. Dit voorkomt CORS‑problemen en houdt de backend URL verborgen.
+
+#### Dataflow
+
+1. De frontend doet een request naar een lokaal endpoint zoals /api/skill.
+2. Next.js stuurt dit door naar de Render‑API (/skill).
+3. De API retourneert JSON‑data.
+4. Axios verwerkt de response en toont deze in de UI.
+
+Voorbeeld:
+
+```
+const res = await axios.get("/api/skill");
+setSkills(res.data);
+
+```
+
+### Endpoints
+
+| Frontend endpoint | Backend endpoint | Beschrijving |
+| --- | --- | --- |
+| ``/api/register`` | ``/user/register`` | Registreert een nieuwe gebruiker |
+| ``/api/login`` | ``/user/login`` | Logt een gebruiker in |
+| ``/api/tag/find-or-create`` | ``/tag/find-or-create`` | Zoekt een tag of maakt deze aan |
+| ``/api/tag/:id`` | ``/tag/:id`` | Haalt één specifieke tag op |
+| ``/api/tag`` | ``/tag`` | Haalt alle tags op of maakt een nieuwe tag aan |
+| ``/api/skill`` | ``/skill`` | Haalt alle skills op of maakt een nieuwe skill aan |
+| ``/api/skill/:id`` | ``/skill/:id`` | Haalt één specifieke skill op of verwijdert deze |
+
+### Routes
+Hieronder een overzicht van alle routes binnen het project SkillSwap:
+
+| Route | Beschrijving |
+| --- | --- |
+| [``/``](https://github.com/elevate-digital/skillswap/blob/main/app/page.tsx) | Homepagina met overzicht van alle skills en vragen. |
+| [``/login``](https://github.com/elevate-digital/skillswap/blob/main/app/login/page.tsx) | Pagina waar gebruikers kunnen inloggen. |
+| [``/register``](https://github.com/elevate-digital/skillswap/blob/main/app/register/page.tsx) | Pagina waar nieuwe gebruikers een account kunnen aanmaken. |
+| [``/skill-aanvraag``](https://github.com/elevate-digital/skillswap/blob/main/app/skill-aanvraag/page.tsx) | Pagina met formulier waarmee je een skill kan aanbieden. |
+| [``/hulp-nodig``](https://github.com/elevate-digital/skillswap/blob/main/app/hulp-nodig/page.tsx) | Pagina met formulier waarmee je jouw vraag kunt stellen. |
+| [``/delete-skills``](https://github.com/elevate-digital/skillswap/blob/main/app/delete-skills/page.tsx) | Pagina voor het beheren of verwijderen van eigen skills. |
+
+### Datamodel
+Onderstaand datamodel laat zien hoe de belangrijkste entiteiten binnen SkillSwap met elkaar verbonden zijn en hoe data onderling wordt gebruikt.
+
+<img width="1105" height="602" alt="Image" src="https://github.com/user-attachments/assets/6d4f636f-0dfe-42ae-9ddf-6c1fe6c3b63b" />
+ 
 ## Installatie
 Volg deze stappen om SkillSwap lokaal op je computer te installeren en te draaien:
 
