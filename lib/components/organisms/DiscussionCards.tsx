@@ -32,8 +32,8 @@ export function DiscussionCards() {
   // Fallback als er geen skills zijn
   if (filtered.length === 0) {
     return (
-      <motion.div className="text-center text-gray-500 p-4" transition={{ delay: 3 }}>
-        Geen skills gevonden.
+      <motion.div className="flex text-center text-gray-500 p-4 h-[54vh] items-center justify-center" transition={{ delay: 3 }}>
+        <p>Geen skills gevonden.</p>
       </motion.div>
     );
   }

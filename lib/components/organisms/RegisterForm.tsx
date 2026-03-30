@@ -9,7 +9,7 @@ import { NameField, useAuth, EmailField, PasswordField, LinkButton } from "@/lib
 export function RegisterForm() {
 
   // Objecten uit de useAuth ophalen 
-  const { user, login, logout, authStatus, setAuthStatus, authError, setAuthError } = useAuth();
+  const { user, login, authStatus, setAuthStatus, authError, setAuthError } = useAuth();
 
   // State voor de formuliervelden
   const [form, setForm] = useState({ name: "", email: "", password: "" });
