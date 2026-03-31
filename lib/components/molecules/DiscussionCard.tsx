@@ -50,9 +50,7 @@ export function DiscussionCard({ item }: { item: SkillType }) {
         </div>
 
         {/* Wordt later dynamisch gemaakt */}
-        <span className="flex items-center gap-1 text-[var(--primary-text-color)] bg-[var(--primary-bg-color)] rounded-full px-[12px]">
-          <ChatCircleIcon className="w-4 h-4" />0
-        </span>
+        <a className="flex items-center gap-1 text-[var(--primary-text-color)] bg-[var(--primary-bg-color)] rounded-full px-[12px]" href={`/comment/${item.id}`}><ChatCircleIcon className="w-4 h-4" />0</a>
       </section>
 
       {/* Toon de switcher alleen als de skill van de persoon is die deze heeft aangemaakt  */}

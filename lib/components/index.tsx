@@ -22,6 +22,7 @@ export { TagsField } from "./molecules/TagsField";
 export { Providers } from "./molecules/Providers";
 export { SkillForm } from "./molecules/SkillForm";
 export { Result } from "./molecules/Result";
+export { Comment } from "./molecules/Comment";
 
 // Organisms
 export { Container } from "./organisms/Container";
@@ -31,11 +32,13 @@ export { LoginForm } from "./organisms/LoginForm";
 export { OfferForm } from "./organisms/OfferForm";
 export { RequestForm } from "./organisms/RequestForm";
 export { RegisterForm } from "./organisms/RegisterForm";
+export { CommentForm } from "./organisms/CommentForm";
 export { AuthProvider, useAuth } from "./organisms/useAuth";
 export { SkillsProvider, useSkills } from "./organisms/useSkill";
 export { SplashScreen } from "./organisms/SplashScreen";
 export { PageTransition } from "./organisms/PageTransition";
 export { ResultPanel } from "./organisms/ResultPanel";
+export { CommentPopup } from "./organisms/CommentPopup";
 
 // Types
 export type { TagType } from "./types/TagType"
