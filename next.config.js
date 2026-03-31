@@ -40,6 +40,14 @@ const nextConfig = {
         source: "/api/skill/:id",
         destination: "https://skillswap-api-yw06.onrender.com/skill/:id",
       },
+      {
+        source: "/api/comment",
+        destination: "https://skillswap-api-yw06.onrender.com/comment",
+      },
+      {
+        source: "/api/comment/:id",
+        destination: "https://skillswap-api-yw06.onrender.com/comment/:id",
+      },
     ];
   },
 };
