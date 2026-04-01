@@ -22,7 +22,7 @@ export function AuthPopup({ title, description, icon, children, showSwitch, show
   // Wanneer de authenticatie of skillstatus aan het laden is, laat dan de loading state zien
   if (authStatus === "loading" || SkillFormStatus === "loading") {
     return (
-      <section className="px-[1.5em] py-[3em] flex flex-col gap-3 w-[90%] max-w-[500px] rounded-[var(--border-radius-md)] bg-[var(--primary-bg-color)] items-center">
+      <section className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 relative px-[1.5em] py-[3em] flex flex-col gap-3 w-[90%] max-w-[500px] rounded-[var(--border-radius-md)] bg-[var(--primary-bg-color)] items-center">
         <p className="text-blue-600 animate-pulse">Bezig met laden…</p>
         <img className="animate-spin" src="/assets/loading-icon.svg" alt="Loading" width={50} height={50} />
       </section>
