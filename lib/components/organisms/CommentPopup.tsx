@@ -20,7 +20,7 @@ export function CommentPopup() {
     const newestCommentId = sortedComments[0]?.id;
 
     return (
-        <section className="fixed top-0 right-0 bg-[var(--primary-bg-color)] w-[100%] md:w-[540px] h-[100vh] z-[3100] p-[15px] md:p-[25px] flex flex-col justify-between">
+        <section className="fixed top-0 right-0 bg-[var(--primary-bg-color)] w-[100%] md:w-[540px] h-[100dvh] z-[3100] p-[15px] md:p-[25px] flex flex-col justify-between">
             <a href="/" className="absolute right-[1.2em] top-[1.3em]">
                 <span className="sr-only">Sluit popup</span>
                 <PlusIcon width={26} height={26} className="rotate-45" />
