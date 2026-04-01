@@ -11,4 +11,7 @@ export type SkillType = {
   updated_at: string;       // timestamp van laatste update
   user: UserType;           // gebruiker object (naam/email)
   tags: TagType[];          // array van tags
+  _count?: {
+    comments: number;
+  };                        // optioneel veld voor aantal comments
 };
