@@ -35,6 +35,7 @@ export { RegisterForm } from "./organisms/RegisterForm";
 export { CommentForm } from "./organisms/CommentForm";
 export { AuthProvider, useAuth } from "./organisms/useAuth";
 export { SkillsProvider, useSkills } from "./organisms/useSkill";
+export { CommentProvider, useComment } from "./organisms/useComment";
 export { SplashScreen } from "./organisms/SplashScreen";
 export { PageTransition } from "./organisms/PageTransition";
 export { ResultPanel } from "./organisms/ResultPanel";
