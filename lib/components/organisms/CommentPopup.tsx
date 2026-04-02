@@ -1,11 +1,12 @@
 'use client';
 
-import { CommentForm, PopupHeader, Comment, useComment, useSkills } from "@/lib/components"
-import { PlusIcon, LockIcon } from "@phosphor-icons/react";
+import { CommentForm, PopupHeader, Comment, useComment, useSkills, useAuth } from "@/lib/components"
+import { PlusIcon, LockIcon, ProhibitIcon } from "@phosphor-icons/react";
 
 export function CommentPopup() {
    const { comments, loading, skillId } = useComment();
     const { skills } = useSkills();
+    const { user } = useAuth();
 
     const skill = skills?.find((s) => s.id === skillId);
     const title = skill?.title ?? "Reacties";
@@ -41,7 +42,14 @@ export function CommentPopup() {
                 ))}         
             </ul>
 
-            {!isClosed && <CommentForm />}
+            {!isClosed && user && <CommentForm />}
+            {!isClosed && !user && (
+                <p className="flex items-center gap-3 justify-center bg-white rounded-[.5em] p-[.8em]">
+                    <ProhibitIcon size={22} weight="regular" fill="#BABABA" />
+                    Je moet ingelogd zijn om een reactie te kunnen plaatsen
+                </p>
+            )}
+
             {isClosed && 
             <div className="flex flex-col gap-5">
                 <div className="flex w-[100%] h-px bg-gray-300" />
