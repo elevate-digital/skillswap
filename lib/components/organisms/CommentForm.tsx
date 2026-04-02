@@ -43,6 +43,9 @@ export function CommentForm() {
                     icon={formStatus === "submitting" ? undefined : PaperPlaneIcon}
                     disabled={formStatus === "submitting"}
                 >
+
+                    <span className="sr-only">Plaats reactie</span>
+                    
                     <span className="hidden md:block">
                         {formStatus === "submitting" ? (
                             <div className="flex items-center gap-3">
