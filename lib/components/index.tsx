@@ -23,6 +23,7 @@ export { Providers } from "./molecules/Providers";
 export { SkillForm } from "./molecules/SkillForm";
 export { Result } from "./molecules/Result";
 export { Comment } from "./molecules/Comment";
+export { SearchField } from "./molecules/SearchField";
 
 // Organisms
 export { Container } from "./organisms/Container";
@@ -39,6 +40,7 @@ export { CommentProvider, useComment } from "./organisms/useComment";
 export { SplashScreen } from "./organisms/SplashScreen";
 export { PageTransition } from "./organisms/PageTransition";
 export { ResultPanel } from "./organisms/ResultPanel";
+export { FilterPanel } from "./organisms/FilterPanel";
 export { CommentPopup } from "./organisms/CommentPopup";
 
 // Types
