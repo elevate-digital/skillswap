@@ -24,6 +24,7 @@ export { SkillForm } from "./molecules/SkillForm";
 export { Result } from "./molecules/Result";
 export { Comment } from "./molecules/Comment";
 export { SearchField } from "./molecules/SearchField";
+export { StatusField } from "./molecules/StatusField";
 
 // Organisms
 export { Container } from "./organisms/Container";
