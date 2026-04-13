@@ -15,14 +15,7 @@ export default function Home() {
 export function PageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const {
-    offerCount,
-    requestCount,
-    offerOpenCount,
-    offerCompletedCount,
-    requestOpenCount,
-    requestCompletedCount
-  } = useSkills();
+  const { offerCount, requestCount, offerOpenCount, offerCompletedCount, requestOpenCount, requestCompletedCount } = useSkills();
 
   const [searchTerm, setSearchTerm] = useState("");
   const [status, setStatus] = useState("all");

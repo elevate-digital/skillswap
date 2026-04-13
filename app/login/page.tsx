@@ -15,7 +15,10 @@ function LoginContent() {
   // Haal het aantal offers en requests op uit de useSkills hook
   const [searchTerm, setSearchTerm] = useState("");
   const [status, setStatus] = useState("all");
-  const { offerCount, requestCount, openCount, completedCount } = useSkills();
+  const { offerCount, requestCount, offerOpenCount, offerCompletedCount, requestOpenCount, requestCompletedCount } = useSkills();
+
+  const openCount = offerOpenCount + requestOpenCount;
+  const completedCount = offerCompletedCount + requestCompletedCount;
 
   return (
     <>

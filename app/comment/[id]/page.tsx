@@ -10,9 +10,10 @@ export default function CommentPage({ params }: { params: Promise<{ id: string }
     // Haal het aantal offers en requests op uit de useSkills hook
     const [searchTerm, setSearchTerm] = useState("");
     const [status, setStatus] = useState("all");
-    const { offerCount, requestCount, openCount, completedCount } = useSkills();
+    const { offerCount, requestCount, offerOpenCount, offerCompletedCount, requestOpenCount, requestCompletedCount } = useSkills();
 
-
+    const openCount = offerOpenCount + requestOpenCount;
+    const completedCount = offerCompletedCount + requestCompletedCount;
     return (
         <main id="inhoud" className="py-[1em] md:py-[2em] flex flex-col gap-5">
             <PopupOverlay>
