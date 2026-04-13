@@ -2,15 +2,17 @@
 
 export const dynamic = "force-dynamic";
 
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { RegisterForm, DiscussionCards, LoginForm, PopupOverlay, AuthPopup, Switch, useSkills } from "@/lib/components";
+import { RegisterForm, DiscussionCards, LoginForm, PopupOverlay, AuthPopup, Switch, useSkills, ResultPanel, FilterPanel } from "@/lib/components";
 
 function RegisterContent() {
   const params = useSearchParams();
   const mode = params.get("mode") === "register" ? "register" : "login";
 
-  const { offerCount, requestCount } = useSkills();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [status, setStatus] = useState("all");
+  const { offerCount, requestCount, openCount, completedCount } = useSkills();
 
   return (
     <>
@@ -24,6 +26,17 @@ function RegisterContent() {
         </AuthPopup>
       </PopupOverlay>
 
+      <ResultPanel />
+        
+      <FilterPanel
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        status={status}
+        setStatus={setStatus}
+        openCount={openCount}
+        completedCount={completedCount}
+      />
+
       <div className="w-[100%] md:w-[26em] self-baseline">
         <Switch
           param="type"
@@ -32,7 +45,7 @@ function RegisterContent() {
         /> 
       </div>
 
-      <DiscussionCards />
+       <DiscussionCards searchTerm={searchTerm} status={status} />
     </>
   );
 }

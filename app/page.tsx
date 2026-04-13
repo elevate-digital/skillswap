@@ -1,8 +1,8 @@
 'use client';
 
-import { Suspense, useEffect } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { DiscussionCards, Switch, useSkills, ResultPanel } from "@/lib/components";
+import { DiscussionCards, Switch, useSkills, ResultPanel, FilterPanel } from "@/lib/components";
 
 export default function Home() {
   return (
@@ -12,11 +12,13 @@ export default function Home() {
   );
 }
 
-function PageContent() {
+export function PageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { offerCount, requestCount, openCount, completedCount } = useSkills();
 
-  const { offerCount, requestCount } = useSkills();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [status, setStatus] = useState("all");
 
   useEffect(() => {
     const type = searchParams.get("type");
@@ -29,6 +31,15 @@ function PageContent() {
     <main id="inhoud" className="py-[1em] md:py-[2em] flex flex-col gap-5">
       <ResultPanel />
 
+      <FilterPanel
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        status={status}
+        setStatus={setStatus}
+        openCount={openCount}
+        completedCount={completedCount}
+      />
+
       <div className="w-full md:w-[26em] self-baseline">
         <Switch
           param="type"
@@ -37,7 +48,7 @@ function PageContent() {
         />
       </div>
 
-      <DiscussionCards />
+      <DiscussionCards searchTerm={searchTerm} status={status} />
     </main>
   );
 }
