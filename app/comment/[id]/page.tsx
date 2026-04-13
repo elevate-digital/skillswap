@@ -24,12 +24,12 @@ export default function CommentPage({ params }: { params: Promise<{ id: string }
             <ResultPanel />
         
             <FilterPanel
-            searchTerm={searchTerm}
-            setSearchTerm={setSearchTerm}
-            status={status}
-            setStatus={setStatus}
-            openCount={openCount}
-            completedCount={completedCount}
+                searchTerm={searchTerm}
+                setSearchTerm={setSearchTerm}
+                status={status}
+                setStatus={setStatus}
+                openCount={openCount}
+                completedCount={completedCount}
             />
 
             <div className="w-[100%] md:w-[26em] self-baseline">

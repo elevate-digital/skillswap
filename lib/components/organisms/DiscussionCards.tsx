@@ -8,16 +8,19 @@ import { useEffect, useState } from "react";
 interface DiscussionCardsProps {
   searchTerm: string;
   status: string;
+  type?: "OFFER" | "REQUEST";
 }
 
-export function DiscussionCards({ searchTerm, status }: DiscussionCardsProps) {
+export function DiscussionCards({ searchTerm, status, type }: DiscussionCardsProps) {
   const params = useSearchParams();
-  const type = params.get("type");
+  const paramsType = params.get("type");
+  const activeType = type ?? paramsType;
+  
   const { skills } = useSkills();
 
   const filtered = skills.filter(skill => {
-    // Filter op type
-    if (type && skill.type !== type) return false;
+
+    if (activeType && skill.type !== activeType) return false;
 
     // Filter op status
     if (status === "open" && skill.completed) return false;

@@ -37,7 +37,7 @@ export default function Hulp() {
           <Switch param="type" options={["OFFER", "REQUEST"]} labels={[`Skills (${offerCount})`, `Hulpvragen (${requestCount})`]} /> 
         </div>
         
-        <DiscussionCards searchTerm={searchTerm} status={status} />
+        <DiscussionCards type="OFFER" searchTerm={searchTerm} status={status} />
       </Suspense>
     </main>
   )

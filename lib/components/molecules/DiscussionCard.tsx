@@ -22,7 +22,7 @@ export function DiscussionCard({ item }: { item: SkillType }) {
         </h2>
         <p className={`flex items-center gap-1 px-[12px] rounded-[var(--border-radius-md)] ${item.completed ? "bg-[var(--primary-highlight-color)] !text-[var(--secondary-text-color)]" : "bg-[var(--succes-color)] !text-[var(--secondary-text-color)]"}`}>
           <ClockIcon />
-          {item.completed ? "Gesloten" : "Open"}
+          {item.completed ? "Afgerond" : "Open"}
         </p>
       </section>
 
@@ -63,8 +63,8 @@ export function DiscussionCard({ item }: { item: SkillType }) {
       {isOwner && (
         <label className="flex items-center gap-2 font-[var(--font-weight-m)] text-[16px] text-[var(--primary-text-color)] pt-[1em]">
           <input type="checkbox" checked={item.completed} onChange={() => toggleSkillStatus(item.id, item.completed)} className="peer appearance-none w-12 h-6 bg-gray-300 rounded-full relative cursor-pointer checked:bg-[var(--secondary-bg-color)] before:content-[''] before:absolute before:top-1 before:left-1 before:w-4 before:h-4 before:bg-white before:rounded-full before:shadow-md checked:before:translate-x-6 before:transition-transform before:duration-300" />
-          <span className="peer-checked:hidden">open</span>
-          <span className="hidden peer-checked:inline">gesloten</span>
+          <span className="peer-checked:hidden">Open</span>
+          <span className="hidden peer-checked:inline">Afgerond</span>
         </label>
       )}
     </article>

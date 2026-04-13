@@ -12,7 +12,8 @@ export function SkillForm({
     successTitle,
     successText,
     submitLabel,
-    listLinkLabel
+    listLinkLabel,
+    dividerText
 }: {
     type: "OFFER" | "REQUEST";
     titlePlaceholder: string;
@@ -21,6 +22,7 @@ export function SkillForm({
     successText: string;
     submitLabel: string;
     listLinkLabel: string;
+    dividerText?: string;
 }) {
 
     // State voor de form velden en tags
@@ -92,7 +94,7 @@ export function SkillForm({
 
                 <div className="flex items-center gap-4 my-2 w-full">
                     <div className="flex-1 h-px bg-gray-300" />
-                    <p className="text-green-600">Nog een toevoegen</p>
+                    <p className="text-green-600">{dividerText}</p>
                     <div className="flex-1 h-px bg-gray-300" />
                 </div>
 
@@ -115,7 +117,7 @@ export function SkillForm({
             <div className="h-[1px] bg-[#CBCBCB] w-full mt-3"></div>
 
             <div className="flex flex-col-reverse md:flex-row md:items-center gap-2 justify-end pt-3">
-                <LinkButton variant="secondary">Annuleren</LinkButton>
+                <LinkButton variant="secondary" href="/">Annuleren</LinkButton>
                 <Button type="submit" variant="primary" icon={PlusCircleIcon} disabled={SkillFormStatus === "loading"}>
                     {submitLabel}
                 </Button>

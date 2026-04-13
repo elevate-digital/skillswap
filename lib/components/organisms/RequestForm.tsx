@@ -10,6 +10,7 @@ export function RequestForm() {
             successText="Je vraag is succesvol opgeslagen."
             submitLabel="Vraag toevoegen"
             listLinkLabel="Bekijk alle vragen"
+            dividerText="Nog een vraag toevoegen"
         />
     );
 }

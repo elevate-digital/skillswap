@@ -53,7 +53,7 @@ export function CommentPopup() {
             {isClosed && 
             <div className="flex flex-col gap-5">
                 <div className="flex w-[100%] h-px bg-gray-300" />
-                <p className="flex items-center gap-3 justify-center bg-white rounded-[.5em] p-[.8em]"><LockIcon size={22} weight="fill" fill="#BF2D2D" />Deze ticket is gesloten. Reacties plaatsen is uitgezet.</p>
+                <p className="flex items-center gap-3 justify-center bg-white rounded-[.5em] p-[.8em]"><LockIcon size={22} weight="fill" fill="#BF2D2D" />Deze ticket is al afgerond. Reacties plaatsen is uitgezet.</p>
             </div>
             }
         </section>

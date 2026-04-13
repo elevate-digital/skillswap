@@ -23,7 +23,7 @@ export default function Skill() {
       {/* Render pas de volgende elementen als tot search params (useSearchParams) beschikbaar is */}
       <Suspense fallback={null}>
         <ResultPanel />
-        
+
         <FilterPanel
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
@@ -41,7 +41,7 @@ export default function Skill() {
           /> 
         </div>
         
-        <DiscussionCards searchTerm={searchTerm} status={status} />
+        <DiscussionCards type="OFFER" searchTerm={searchTerm} status={status} />
       </Suspense>
     </main>
   )

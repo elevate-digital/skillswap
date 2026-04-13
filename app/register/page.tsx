@@ -45,7 +45,7 @@ function RegisterContent() {
         /> 
       </div>
 
-       <DiscussionCards searchTerm={searchTerm} status={status} />
+       <DiscussionCards type="OFFER" searchTerm={searchTerm} status={status} />
     </>
   );
 }

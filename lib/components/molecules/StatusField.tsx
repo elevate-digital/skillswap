@@ -16,13 +16,13 @@ export function StatusField({ status, setStatus, openCount, completedCount }: St
 
       <select id="status" name="status" value={status} onChange={(e) => setStatus(e.target.value)} className="status-select w-full py-[.8em] px-[1em] rounded-md bg-[var(--primary-bg-color)] cursor-pointer">
         <option value="all" className="py-[.6em] px-[.7em] rounded-[3px] cursor-pointer">
-          Alle Status ({openCount + completedCount})
+          Alle status ({openCount + completedCount})
         </option>
         <option value="open" className="py-[.6em] px-[.7em] rounded-[3px] cursor-pointer">
-          Open ({openCount})
+          Open tickets ({openCount})
         </option>
         <option value="done" className="py-[.6em] px-[.7em] rounded-[3px] cursor-pointer">
-          Afgerond ({completedCount})
+          Afgeronde tickets ({completedCount})
         </option>
       </select>
     </div>

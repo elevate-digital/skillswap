@@ -15,10 +15,32 @@ export default function Home() {
 export function PageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { offerCount, requestCount, openCount, completedCount } = useSkills();
+  const {
+    offerCount,
+    requestCount,
+    offerOpenCount,
+    offerCompletedCount,
+    requestOpenCount,
+    requestCompletedCount
+  } = useSkills();
 
   const [searchTerm, setSearchTerm] = useState("");
   const [status, setStatus] = useState("all");
+
+  const filteredOfferCount =
+    status === "all"
+      ? offerCount
+      : status === "open"
+      ? offerOpenCount
+      : offerCompletedCount;
+
+  const filteredRequestCount =
+    status === "all"
+      ? requestCount
+      : status === "open"
+      ? requestOpenCount
+      : requestCompletedCount;
+  
 
   useEffect(() => {
     const type = searchParams.get("type");
@@ -36,15 +58,18 @@ export function PageContent() {
         setSearchTerm={setSearchTerm}
         status={status}
         setStatus={setStatus}
-        openCount={openCount}
-        completedCount={completedCount}
+        openCount={offerOpenCount + requestOpenCount}
+        completedCount={offerCompletedCount + requestCompletedCount}
       />
 
       <div className="w-full md:w-[26em] self-baseline">
         <Switch
           param="type"
           options={["OFFER", "REQUEST"]}
-          labels={[`Skills (${offerCount})`, `Hulpvragen (${requestCount})`]}
+          labels={[
+            `Skills (${filteredOfferCount})`,
+            `Hulpvragen (${filteredRequestCount})`
+          ]}
         />
       </div>
 
