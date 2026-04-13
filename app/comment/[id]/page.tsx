@@ -1,14 +1,16 @@
 'use client';
 
-import { use } from "react";
-import { PopupOverlay, CommentPopup, CommentProvider, DiscussionCards, Switch, useSkills } from "@/lib/components";
+import { use, useState } from "react";
+import { PopupOverlay, CommentPopup, CommentProvider, DiscussionCards, Switch, useSkills, FilterPanel, ResultPanel } from "@/lib/components";
 
 export default function CommentPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = use(params); // <-- unwrap de Promise
     const skillId = Number(id);
 
     // Haal het aantal offers en requests op uit de useSkills hook
-    const { offerCount, requestCount } = useSkills();
+    const [searchTerm, setSearchTerm] = useState("");
+    const [status, setStatus] = useState("all");
+    const { offerCount, requestCount, openCount, completedCount } = useSkills();
 
 
     return (
@@ -19,6 +21,17 @@ export default function CommentPage({ params }: { params: Promise<{ id: string }
                 </CommentProvider>
             </PopupOverlay>
 
+            <ResultPanel />
+        
+            <FilterPanel
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            status={status}
+            setStatus={setStatus}
+            openCount={openCount}
+            completedCount={completedCount}
+            />
+
             <div className="w-[100%] md:w-[26em] self-baseline">
                 <Switch
                 param="type"
@@ -27,7 +40,7 @@ export default function CommentPage({ params }: { params: Promise<{ id: string }
                 /> 
             </div>
 
-            <DiscussionCards />
+            <DiscussionCards searchTerm={searchTerm} status={status} />
         </main>
     );
 }
