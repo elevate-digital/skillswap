@@ -5,7 +5,10 @@ import { StarIcon, QuestionIcon, UsersIcon, ChartLineUpIcon } from "@phosphor-ic
 
 export function ResultPanel() {
   // Haal het aantal offers, requests, open en completed skills op uit de useSkills hook
-  const { offerCount, requestCount, openCount, completedCount } = useSkills();
+  const { offerCount, requestCount, offerOpenCount, offerCompletedCount, requestOpenCount, requestCompletedCount } = useSkills();
+
+  const openCount = offerOpenCount + requestOpenCount;
+  const completedCount = offerCompletedCount + requestCompletedCount;
 
   return (
     <div className=" flex gap-4 w-full overflow-x-auto xl:grid xl:grid-cols-4 xl:gap-4 xl:overflow-visible">
