@@ -35,7 +35,7 @@ export function AuthPopup({ title, description, icon, children, showSwitch, show
   const shouldShowSwitch = showSwitch ?? !user;
 
   return (
-    <section className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 relative px-[1.5em] py-[3em] flex flex-col gap-3 w-[90%] max-w-[500px] rounded-[var(--border-radius-md)] bg-[var(--primary-bg-color)]">
+    <section className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 relative px-[1.5em] py-[3em] flex flex-col gap-3 w-[100%] md:max-w-[500px] h-[100dvh] md:h-fit md:rounded-[var(--border-radius-md)] bg-[var(--primary-bg-color)]">
       <a href="/" className="absolute right-[1.2em] top-[1em]"><span className="sr-only">Sluit popup</span><PlusIcon width={26} height={26} className="rotate-45" /></a>
       
       {/* Zichtbaarheid van de header */}

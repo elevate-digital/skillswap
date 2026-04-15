@@ -39,7 +39,7 @@ export function LinkButton({ children = "Klik hier", href = "#", variant = "seco
 
   return (
 
-    <a href={href} className={`relative inline-flex items-center justify-center gap-2 ${paddingClasses} py-[12px] px-[16px] md:py-[12px] md:px-[32px] group rounded-[var(--border-radius-sm)] overflow-hidden ${className}`}>
+    <a href={href} className={`relative inline-flex items-center justify-center gap-2 ${paddingClasses} py-[12px] px-[10px] md:py-[12px] md:px-[32px] group rounded-[var(--border-radius-sm)] overflow-hidden ${className}`}>
       {/* Basis achtergrond */}
       <span className={`absolute inset-0 ${v.baseBg}`} />
 
