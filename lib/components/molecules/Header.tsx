@@ -9,6 +9,8 @@ export function Header() {
   // User ophalen uit de useAuth voor het checken of een gebruiker is ingelogd
   const { user } = useAuth();
 
+  const isLoggedIn = !!user;
+
   return (
     <header className="flex justify-between items-center m-auto sticky top-0 bg-[var(--primary-bg-color)] py-[.5em] md:py-[1em] z-[1000]">
       {/* Logo SkillSwap */}
@@ -23,8 +25,8 @@ export function Header() {
         {user && (<a href="/login"><ProfilePicture name={user?.name || ""} /><span className="sr-only">Account beheren</span></a>)}
 
         <div className='hidden md:flex gap-2'>
-          <LinkButton variant="primary" href="/skill-aanvraag" icon={PlusCircleIcon}>Skill aanbieden</LinkButton>
-          <LinkButton variant="secondary" href="/hulp-nodig" icon={PlusCircleIcon}>Hulp vragen</LinkButton>
+          <LinkButton variant="primary" href={isLoggedIn ? "/skill-aanvraag" : "/login"} icon={PlusCircleIcon}>Skill aanbieden</LinkButton>
+          <LinkButton variant="secondary" href={isLoggedIn ? "/hulp-nodig" : "/login"} icon={PlusCircleIcon}>Hulp vragen</LinkButton>
         </div>
       </nav>
     </header>
