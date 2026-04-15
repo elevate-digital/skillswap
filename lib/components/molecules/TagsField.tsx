@@ -16,6 +16,7 @@ export function TagsField({ value, onChange, ...props }: TagsFieldProps) {
   // State voor input waarde en populaire tags
   const [input, setInput] = useState("");
   const [popularTags, setPopularTags] = useState<TagType[]>([]);
+  const isMaxReached = value.length >= 5;
 
   // Populaire tags ophalen
   useEffect(() => {
@@ -71,21 +72,32 @@ export function TagsField({ value, onChange, ...props }: TagsFieldProps) {
 
   return (
     <div className="flex flex-col gap-1">
-      <label>Tags (max 5)</label>
+      <label>Tags *max 5</label>
 
       <div className="flex gap-2">
-        <Input {...props} value={input} className="flex-1 min-w-0" onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => {
-            // Wanneer op Enter gedrukt wordt, tag toevoegen
+        <Input
+          {...props}
+          value={input}
+          disabled={isMaxReached}
+          className="flex-1 min-w-0"
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={(e) => {
             if (e.key === "Enter") {
               e.preventDefault();
               addTag();
             }
           }}
-          placeholder="Voeg een tag toe..."
+          placeholder={
+            isMaxReached
+              ? "Maximaal 5 tags bereikt"
+              : "Voeg een tag toe..."
+          }
         />
 
-        <Button type="button" variant="primary" onClick={addTag}>Toevoegen</Button>
+        <Button type="button" variant="primary" onClick={addTag} disabled={isMaxReached}>Toevoegen</Button>
       </div>
+        {isMaxReached && <p className="!text-red-500">
+          Je hebt het maximum van 5 tags bereikt</p> }
 
       {/* Geselecteerde tags */}
       <div className="flex flex-wrap gap-2 pt-1">
@@ -107,9 +119,20 @@ export function TagsField({ value, onChange, ...props }: TagsFieldProps) {
               <li key={tag.id}>
                 <button
                   type="button"
-                  onClick={() => addTagFromPopular(tag.title)}
+                  disabled={!isSelected && isMaxReached}
+                  onClick={() =>
+                    isSelected
+                      ? removeTag(tag.title)
+                      : addTagFromPopular(tag.title)
+                  }
                   className={`text-[16px] px-2 border rounded-full cursor-pointer transition ${
-                    isSelected ? "bg-[#D9D9D9] border-[#D9D9D9]" : "text-[var(--primary-text-color)] border-[#D9D9D9] hover:bg-[#D9D9D9]" }`}>
+                    isSelected
+                      ? "bg-[#D9D9D9] border-[#D9D9D9]"
+                      : isMaxReached
+                      ? "text-gray-400 border-gray-300 cursor-not-allowed"
+                      : "text-[var(--primary-text-color)] border-[#D9D9D9] hover:bg-[#D9D9D9]"
+                  }`}
+                >
                   {tag.title}
                 </button>
               </li>
