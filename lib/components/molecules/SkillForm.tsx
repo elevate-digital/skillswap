@@ -13,6 +13,7 @@ export function SkillForm({
     successText,
     submitLabel,
     listLinkLabel,
+    listLink,
     dividerText
 }: {
     type: "OFFER" | "REQUEST";
@@ -22,6 +23,7 @@ export function SkillForm({
     successText: string;
     submitLabel: string;
     listLinkLabel: string;
+    listLink: string;
     dividerText?: string;
 }) {
 
@@ -87,7 +89,7 @@ export function SkillForm({
                     <h2 className="text-green-600 !text-[20px]">{successTitle}</h2>
                     <p className="text-green-600 text-center">{successText}</p>
 
-                    <LinkButton variant="primary" href="/">
+                    <LinkButton variant="primary" href={listLink}>
                         {listLinkLabel}
                     </LinkButton>
                 </section>

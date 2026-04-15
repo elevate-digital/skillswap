@@ -10,6 +10,7 @@ export function OfferForm() {
             successText="Je skill is succesvol opgeslagen."
             submitLabel="Skill toevoegen"
             listLinkLabel="Bekijk alle skills"
+            listLink="/"
             dividerText="Nog een skill toevoegen"
         />
     );

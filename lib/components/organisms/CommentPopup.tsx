@@ -44,10 +44,10 @@ export function CommentPopup() {
 
             {!isClosed && user && <CommentForm />}
             {!isClosed && !user && (
-                <p className="flex items-center gap-3 justify-center bg-white rounded-[.5em] p-[.8em]">
+                <span className="flex items-center gap-3 justify-center bg-white rounded-[.5em] p-[.8em]">
                     <ProhibitIcon size={22} weight="regular" fill="#BABABA" />
-                    Je moet ingelogd zijn om een reactie te kunnen plaatsen
-                </p>
+                    <p className="flex gap-1">Je moet<a className="underline" href="/login">ingelogd</a>zijn om een reactie te kunnen plaatsen</p>
+                </span>
             )}
 
             {isClosed && 
